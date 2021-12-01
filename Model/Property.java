@@ -12,7 +12,7 @@ public class Property {
     private double cost;
     private Landlord landlord;
     private String dateListed;
-    private Renter renter;
+    private RegRenter renter;
     private String dateRented;
 
     public int getHouseid() {
