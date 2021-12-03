@@ -1,10 +1,7 @@
 package Model;
 
-import java.util.Date;
-
 public class Property {
-    static private int totalNumberofHouses = 1; //Made houseid based on this number
-    private int houseid; 
+    private int houseid; //should this be an iterating static number?
     private PropertyState status;
     private String address;
     private String type;
@@ -14,13 +11,9 @@ public class Property {
     private String cityQuad;
     private double cost;
     private Landlord landlord;
-    private Date dateListed; //switched to Date from String
+    private String dateListed;
     private RegRenter renter;
-    private Date dateRented; //switched to Date from String
-
-    public Property () {
-        houseid = totalNumberofHouses++;
-    }
+    private String dateRented;
 
     public int getHouseid() {
         return this.houseid;
@@ -102,11 +95,11 @@ public class Property {
         this.landlord = landlord;
     }
 
-    public Date getDateListed() {
+    public String getDateListed() {
         return this.dateListed;
     }
 
-    public void setDateListed(Date dateListed) {
+    public void setDateListed(String dateListed) {
         this.dateListed = dateListed;
     }
 
@@ -118,11 +111,11 @@ public class Property {
         this.renter = renter;
     }
 
-    public Date getDateRented() {
+    public String getDateRented() {
         return this.dateRented;
     }
 
-    public void setDateRented(Date dateRented) {
+    public void setDateRented(String dateRented) {
         this.dateRented = dateRented;
     }
 
