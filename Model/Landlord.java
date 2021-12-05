@@ -7,7 +7,9 @@ public class Landlord implements Account{
     private ArrayList<Property> properties;
     private DBInterfaceController registrationController;
 
-    public Landlord() {} //incomplete
+    public Landlord() {
+        userInfo.setAccountType(AccountType.LANDLORD);
+    } //incomplete
     
     public void registerProperty (Property p) {
     	properties.add(p);
