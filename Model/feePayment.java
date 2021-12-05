@@ -28,12 +28,12 @@ public class feePayment {
         }
     }
 
-    public Notifications getNotified() { //Notifications does not exist on diagram
+    public Notifications getNotified() { // Notifications does not exist on diagram
     	System.out.println("Payment Period Ended!");
     	// Print that they have to renew it?? nothing else?
     }
 
-    public void modifyAmount(double newAmount) { //should this have a parameter?
+    public void modifyAmount(double newAmount) {
     	this.feeAmount = newAmount;
     }
 }
