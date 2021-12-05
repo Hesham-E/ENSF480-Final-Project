@@ -6,10 +6,12 @@ public class Landlord implements Account{
     private feePayment fee;
     private ArrayList<Property> properties;
     private DBInterfaceController registrationController;
+    private int period = 60; // assuming landlord have to pay every 60 days
+    private double amount = 50; // assuming that they have to pay 50 dollars every 60 days
 
     public Landlord() {
         userInfo.setAccountType(AccountType.LANDLORD);
-    } //incomplete
+    }
     
     public void registerProperty (Property p) {
     	properties.add(p);
@@ -18,7 +20,7 @@ public class Landlord implements Account{
 
     public void payFee () {
     	feePayment fee = new feePayment();
-    	fee.pay(period,  amount); // incomplete
+    	fee.pay(this.period, this.amount);
     }
     
     public feePayment getFee() {
