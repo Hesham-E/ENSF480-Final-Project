@@ -1,8 +1,9 @@
 package Model;
+import Controller.*;
 
 import java.util.ArrayList;
 
-public class Landlord implements Account{
+public class Landlord extends Account{
     private feePayment fee;
     private ArrayList<Property> properties;
     private DBInterfaceController registrationController;

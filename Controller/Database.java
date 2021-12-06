@@ -16,7 +16,6 @@ public class Database {
         try{
             this.connect = DriverManager.getConnection(this.DBURL, this.USERNAME, this.PASSWORD);
           }
-      
           catch(SQLException e){
             System.out.println("Error connection to database.");
             System.exit(1);
@@ -24,11 +23,29 @@ public class Database {
     }
     
     public void addAccount (Account account) {
-        
+        try {                    
+
+            String query = "INSERT INTO accounts (Name, Email, Username, Password, AccountType)"
+            + " VALUES(?, ?, ?, ?, ?)";
+            PreparedStatement myStmt = this.connect.prepareStatement(query);
+
+            myStmt.setString(1, account.getUserInfo().getName());
+            myStmt.setString(2, account.getUserInfo().getEmail());
+            myStmt.setString(3, account.getUserInfo().getUsername());
+            myStmt.setString(4, account.getUserInfo().getPassword());
+            myStmt.setString(5, account.getUserInfo().getAccountType().toString());
+
+            myStmt.execute();
+            myStmt.close();
+        } 
+
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }  
     }
     
-  // public Account getAccountInfo (String username) {
-/*
+    public User getAccountInfo (String username) {//Changed return type to User from Account
+        User u = new User();
         try {                    
             Statement myStmt = this.connect.createStatement();
             ResultSet results;
@@ -39,7 +56,11 @@ public class Database {
             if(results.getString("Username").equals(username)){
        
                 //Get account info 
-                
+                u.setUsername(results.getString("Username"));
+                u.setPassword(results.getString("Password"));
+                u.setName(results.getString("Name"));
+                u.setEmail(results.getString("Email"));
+                u.setAccountType("accountType");// Need to convert accountType string to enum!!!!!!!!!!!!!!!!!!!
             }
         }
         myStmt.close();
@@ -48,22 +69,20 @@ public class Database {
         catch (SQLException ex) {
             ex.printStackTrace();
         }   
-        return ;
-        */
- //   }
+        return u;
+        
+    }
     
-    //Used when registering property
+    //Adds property to database when registering property
     public void addProperty (Property property) {
         
         try {                    
-
-            String query = "INSERT INTO property (HouseID, LandlordID, Status, Address, Type, BedroomNo, BathroomNo, Furnished, CityQuad, Cost, DateListed, FeeDueDate)"
+            String query = "INSERT INTO property (HouseID, LandlordUsername, Status, Address, Type, BedroomNo, BathroomNo, Furnished, CityQuad, Cost, DateListed, FeeDueDate)"
             + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement myStmt = this.connect.prepareStatement(query);
 
             myStmt.setInt(1, property.getHouseid());
-            //myStmt.setString(2, property.getLandlord());
-            //idk how to get landlord id!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            myStmt.setString(2, property.getLandlord().getUserInfo().getUsername());
             myStmt.setString(3, property.getStatus().toString());
             myStmt.setString(4, property.getAddress());
             myStmt.setString(5, property.getType());
@@ -76,6 +95,7 @@ public class Database {
             java.sql.Date dateListed = new java.sql.Date(property.getDateListed().getTime());
             myStmt.setDate(11, dateListed);
 
+            //Add 60 days to dateListed to represent fee due date
             Date dueDate = Date.valueOf(dateListed.toLocalDate().plusDays(60));
             java.sql.Date feeDueDate = new java.sql.Date(dueDate.getTime());
 
@@ -93,13 +113,21 @@ public class Database {
     public Property getProperty (int id) {
         Property p = new Property();
         try {
-            String query = "SELECT * FROM property * WHERE HouseID = ?";
-            PreparedStatement Stmt = this.connect.prepareStatement(query);
-            Stmt.setInt(2, id);
-
             //Getting results
-            ResultSet resultSet = Stmt.executeQuery();
+            Statement myStmt = this.connect.createStatement();
+            ResultSet results;
+            results = myStmt.executeQuery("SELECT * FROM property");
+            while (results.next()){
 
+            //Finds matching houseid in the database
+            if(results.getInt("HouseID") == id){
+       
+                //Get property info 
+
+                
+            }
+        }
+        myStmt.close();
 
        } 
 
@@ -160,12 +188,28 @@ public class Database {
             ResultSet results;
             results = myStmt.executeQuery("SELECT * FROM accounts");
 
-            //Populate propertyList with all properties stored in the database
+s            //Populate propertyList with all properties and their info stored in the database
             while (results.next()){
                 Property p = new Property();
+                p.setHouseid(results.getInt("HouseID"));
+
+                //Setting landlord information
+                User landlordUserInfo = getAccountInfo(results.getString("LandlordUsername"));
+                Landlord l = new Landlord();
+                l.setUserInfo(landlordUserInfo);
+                p.setLandlord(l);
+
+                //Setting renter information
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //Does property need to have renter info?
+                User renterUserInfo = getAccountInfo(results.getString("LandlordUsername"));
+                RegRenter r = new RegRenter();
+                r.setUserInfo(renterUserInfo);
+                p.setRenter(r);
+
                 PropertyState s = PropertyState.RENTED;
                 p.setStatus(s);
-        
+                
                 p.setAddress(results.getString("Address"));
                 p.setType(results.getString("Type"));
                 p.setBedroomNo(results.getInt("BedroomNo"));
@@ -173,17 +217,8 @@ public class Database {
                 p.setFurnished(results.getBoolean("Furnished"));
                 p.setCityQuad(results.getString("CityQuad"));
                 p.setCost(results.getDouble("Cost"));
-
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //find landlord account info
-                Landlord l =  new Landlord();
-                p.setLandlord(l);
-
                 p.setDateListed(results.getTimestamp("dateListed"));
                 p.setDateRented(results.getTimestamp("dateRented"));
-                
-                //need to get renter account!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //p.setRegRenter();
     
                 propertyList.add(p);
             
@@ -197,16 +232,35 @@ public class Database {
         return propertyList;
    }
     
+    //Adds message from renter to landlord to the database 
     public void updateMessage (String message, Property property) { //Send message to property's landlord's email
-        
+        try {                    
+
+            String query = "INSERT INTO message (LandlordEmail, Message)"
+            + " VALUES(?, ?)";
+            PreparedStatement myStmt = this.connect.prepareStatement(query);
+
+            myStmt.setString(1, property.getLandlord().getUserInfo().getEmail());
+            myStmt.setString(2, message);
+
+
+            myStmt.execute();
+            myStmt.close();
+        } 
+
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        } 
     }
 }
 
 /*
-Concerns:
-everytime we get property we make a new property object, this affects the houseID count
-more than one property object with same info but different houseID since static 
+Questions:
+everytime we getProperty() we make a new property object, this affects the totalhouse count
+so can we get rid of totalNumberOfHouses static variable
 
 can setStatus function in Property take in a string as an argument instead and convert the string to the corresponding enum
+can set
 
+do we need to know who rented the property can we just say when it got rented
 */
