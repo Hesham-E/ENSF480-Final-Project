@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.ObjectInputFilter.Status;
 import java.util.Date;
 
 public class Property {
@@ -10,7 +11,7 @@ public class Property {
     private String type;
     private int bedroomNo;
     private int bathroomNo;
-    private String furnished;
+    private boolean furnished;
     private String cityQuad;
     private double cost;
     private Landlord landlord;
@@ -70,11 +71,11 @@ public class Property {
         this.bathroomNo = bathroomNo;
     }
 
-    public String getFurnished() {
+    public boolean getFurnished() {
         return this.furnished;
     }
 
-    public void setFurnished(String furnished) {
+    public void setFurnished(boolean furnished) {
         this.furnished = furnished;
     }
 
@@ -110,11 +111,11 @@ public class Property {
         this.dateListed = dateListed;
     }
 
-    public Renter getRenter() {
+    public RegRenter getRenter() {
         return this.renter;
     }
 
-    public void setRenter(Renter renter) {
+    public void setRenter(RegRenter renter) {
         this.renter = renter;
     }
 

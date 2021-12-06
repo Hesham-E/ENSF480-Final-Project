@@ -1,4 +1,5 @@
 package Model;
+import Controller.SearchController;
 
 import java.util.ArrayList;
 
@@ -8,12 +9,12 @@ public class Search implements Observer{
     private String type; //Should we make this an enum?
     private int bedroomNo;
     private int bathroomNo;
-    private String furnished; //Should we make this an enum?
+    private boolean furnished; //Should we make this an enum?
     private String cityQuad; //Should we make this an enum?
-    private DBInterfaceController searchController;
+    private SearchController searchController;
     
 
-    public Search (String type, int bedroomNo, int bathroomNo, String furnished, String cityQuad) {
+    public Search (String type, int bedroomNo, int bathroomNo, boolean furnished, String cityQuad) {
         this.type = type;
         this.bathroomNo = bathroomNo;
         this.bedroomNo = bedroomNo;
@@ -42,8 +43,8 @@ public class Search implements Observer{
         bathroomNo = num;
     }
 
-    public void addFurnished(String f) {
-        furnished = f;
+    public void addFurnished(boolean f) {
+        furnished = true;
     }
 
     public void addCityQuad(String quad) {
@@ -63,7 +64,7 @@ public class Search implements Observer{
     }
     
     public void removeFurnished() {
-        furnished = "";
+        furnished = false;
     }
     
     public void removeCityQuad() {
