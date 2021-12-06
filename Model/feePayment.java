@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Date;
+import java.util.Calendar;
 
 public class feePayment {
     public boolean paid;
@@ -9,26 +10,30 @@ public class feePayment {
     
     public feePayment() {} // incomplete
 
-    public void pay(Date feePeriod, double feeAmount) { // changed it up
-    	
+    public void pay(int period, double feeAmount) { // changed it up
     	this.feeAmount = feeAmount;
     	this.paid = true;
     	
-    	//incomplete
+    	Calendar c = Calendar.getInstance();
+    	c.add(Calendar.DATE, period);
+    	this.feePeriod = c.getTime();
     }
     
-    public void periodEnded(Date feePeriod) {
+    public void periodEnded() { // I think this should be implemented somewhere else but let's leave it here for now
     	Date currDate = new Date();
         
-        if(currDate.getTime() = feePeriod.getTime()) 
+        if(currDate.getTime() = feePeriod.getTime()) {
         	getNotified();
+        	this.paid = false;
+        }
     }
 
-    public Notifications getNotified() { //Notifications does not exist on diagram
-
+    public Notifications getNotified() { // Notifications does not exist on diagram
+    	System.out.println("Payment Period Ended!");
+    	// Print that they have to renew it?? nothing else?
     }
 
-    public void modifyAmount() { //should this have a parameter?
-
+    public void modifyAmount(double newAmount) {
+    	this.feeAmount = newAmount;
     }
 }
