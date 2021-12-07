@@ -2,7 +2,6 @@ package Controller;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.concurrent.Flow.Subscription;
 
 import Model.*;
 
@@ -22,6 +21,7 @@ public class Database {
           }
     }
     
+    //Adds account info to the database
     public void addAccount (Account account) {
         try {                    
 
@@ -44,6 +44,7 @@ public class Database {
         }  
     }
     
+    //Retrieves account info from database based on username
     public User getAccountInfo (String username) {//Changed return type to User from Account
         User u = new User();
         try {                    
@@ -60,7 +61,7 @@ public class Database {
                 u.setPassword(results.getString("Password"));
                 u.setName(results.getString("Name"));
                 u.setEmail(results.getString("Email"));
-                u.setAccountType("accountType");// Need to convert accountType string to enum!!!!!!!!!!!!!!!!!!!
+                u.setAccountType(AccountType.valueOf("accountType"));
             }
         }
         myStmt.close();
@@ -110,6 +111,7 @@ public class Database {
         }   
     }
     
+    //Retrieves property info from database based on house id
     public Property getProperty (int id) {
         Property p = new Property();
         try {
@@ -123,7 +125,25 @@ public class Database {
             if(results.getInt("HouseID") == id){
        
                 //Get property info 
+                p.setHouseid(results.getInt("HouseID"));
 
+                //Setting landlord information
+                User landlordUserInfo = getAccountInfo(results.getString("LandlordUsername"));
+                Landlord l = new Landlord();
+                l.setUserInfo(landlordUserInfo);
+                p.setLandlord(l);
+
+                //Setting the rest of property information
+                p.setStatus(PropertyState.valueOf(results.getString("State")));
+                p.setAddress(results.getString("Address"));
+                p.setType(results.getString("Type"));
+                p.setBedroomNo(results.getInt("BedroomNo"));
+                p.setBathroomNo(results.getInt("BathroomNo"));
+                p.setFurnished(results.getBoolean("Furnished"));
+                p.setCityQuad(results.getString("CityQuad"));
+                p.setCost(results.getDouble("Cost"));
+                p.setDateListed(results.getTimestamp("dateListed"));
+                p.setDateRented(results.getTimestamp("dateRented"));
                 
             }
         }
@@ -137,7 +157,7 @@ public class Database {
        return p;
     }
     
-    //Updates property state 
+    //Updates property state in the database
     public void updatePropertyState (Property property, String state) {
         try {
             String query = "UPDATE property set state = ? where HouseID = ?";
@@ -153,10 +173,7 @@ public class Database {
        }
     }
     
-    public void addSubscription (RegRenter renter, Subscription subscription) {
-        
-    }
-    
+    //Updating property info in database
     public void updateProperty (Property property) {
         //Deletes outdated property in database
         deleteProperty(property.getHouseid());
@@ -165,12 +182,13 @@ public class Database {
         addProperty(property);
     }
 
-    public void deleteProperty(int propertyID){
+    //Deleting property from database based on the house id
+    public void deleteProperty(int houseID){
         try {
              //Delete property with the corresponding propertyID
             String query = "DELETE FROM property WHERE HouseID = ?";
             PreparedStatement myStmt = this.connect.prepareStatement(query);
-            myStmt.setInt(1, propertyID);             
+            myStmt.setInt(1, houseID);             
             myStmt.executeUpdate();
             myStmt.close();
         } 
@@ -180,7 +198,7 @@ public class Database {
         }
     }
     
-    
+    //Retrieves list of properties and their info from the database
     public  ArrayList<Property> getPropertyList () {
         ArrayList<Property> propertyList = new ArrayList<Property>(1);
         try {                    
@@ -188,28 +206,19 @@ public class Database {
             ResultSet results;
             results = myStmt.executeQuery("SELECT * FROM accounts");
 
-s            //Populate propertyList with all properties and their info stored in the database
+            //Populate propertyList with all properties and their info stored in the database
             while (results.next()){
                 Property p = new Property();
                 p.setHouseid(results.getInt("HouseID"));
 
-                //Setting landlord information
+                //Getting landlord information
                 User landlordUserInfo = getAccountInfo(results.getString("LandlordUsername"));
                 Landlord l = new Landlord();
                 l.setUserInfo(landlordUserInfo);
                 p.setLandlord(l);
 
-                //Setting renter information
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //Does property need to have renter info?
-                User renterUserInfo = getAccountInfo(results.getString("LandlordUsername"));
-                RegRenter r = new RegRenter();
-                r.setUserInfo(renterUserInfo);
-                p.setRenter(r);
-
-                PropertyState s = PropertyState.RENTED;
-                p.setStatus(s);
-                
+                //Getting the rest of property information
+                p.setStatus(PropertyState.valueOf(results.getString("State")));
                 p.setAddress(results.getString("Address"));
                 p.setType(results.getString("Type"));
                 p.setBedroomNo(results.getInt("BedroomNo"));
@@ -253,14 +262,3 @@ s            //Populate propertyList with all properties and their info stored i
         } 
     }
 }
-
-/*
-Questions:
-everytime we getProperty() we make a new property object, this affects the totalhouse count
-so can we get rid of totalNumberOfHouses static variable
-
-can setStatus function in Property take in a string as an argument instead and convert the string to the corresponding enum
-can set
-
-do we need to know who rented the property can we just say when it got rented
-*/
