@@ -4,7 +4,6 @@ import java.io.ObjectInputFilter.Status;
 import java.util.Date;
 
 public class Property {
-    static private int totalNumberofHouses = 1; //Made houseid based on this number
     private int houseid; 
     private PropertyState status;
     private String address;
@@ -18,10 +17,6 @@ public class Property {
     private Date dateListed; //switched to Date from String
     private RegRenter renter;
     private Date dateRented; //switched to Date from String
-
-    public Property () {
-        houseid = totalNumberofHouses++;
-    }
 
     public int getHouseid() {
         return this.houseid;
