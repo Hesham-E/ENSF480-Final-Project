@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Controller.SearchController;
 
-public class RegRenter implements Account{
+public class RegRenter extends Account{
     private Search subscription;
     private Property rental;
 
@@ -13,7 +13,7 @@ public class RegRenter implements Account{
     }
     
     //NOT ON UML
-    public ArrayList<Property> performSearch (String type, Integer bedroomNo, Integer bathroomNo, String furnished, String cityQuad) {
+    public ArrayList<Property> performSearch (String type, Integer bedroomNo, Integer bathroomNo, boolean furnished, String cityQuad) {
         Search query = new Search  (type, bedroomNo, bathroomNo, furnished, cityQuad);
         SearchController DBInterface;
         ArrayList<Property> similarProperties = DBInterface.findSimilarProperties(query); //This method does not exist yet
@@ -21,7 +21,7 @@ public class RegRenter implements Account{
     } 
 
     //NOT ON UML
-    public void subscribeToSearch (String type, Integer bedroomNo, Integer bathroomNo, String furnished, String cityQuad) {
+    public void subscribeToSearch (String type, Integer bedroomNo, Integer bathroomNo, boolean furnished, String cityQuad) {
         PropertyCatalog subject = new PropertyCatalog();
         subject.setCatalog(performSearch(type, bedroomNo, bathroomNo, furnished, cityQuad));
         subscription.setSubject(subject);
