@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.ObjectInputFilter.Status;
 import java.util.Date;
 
 public class Property {

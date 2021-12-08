@@ -1,9 +1,39 @@
 package Controller;
 
-public class RegisterPropertyController implements DBInterfaceController{
-    private Property regProperty;
+import Model.Landlord;
+import Model.Property;
+import Model.PropertyState;
+import View.RegisterPropertyGUI;
 
-    public void registerProperty () {
+public class RegisterPropertyController extends DBInterfaceController{
+    private Property regProperty;
+    private RegisterPropertyGUI theView;
+
+    public RegisterPropertyController (Database db, RegisterPropertyGUI view) {
+        super(db);
+        this.database = db;
+        db.initializeConnection();
         
+        theView = view;
+
+        theView.addActionListener (e -> {
+            registerProperty(theView.getGUIAddress(), theView.getGUIType(), 
+                             theView.getGUIBedroomNo(), theView.getGUIBathroomNo(), theView.getGUIFurnished(), 
+                             theView.getGUICityQuad(), theView.getGUICost(), theView.getGUILandlord(), theView.getGUIState());
+        });
+    }
+
+    public void registerProperty (String address, String type, int bedroomNo, int bathroomNo, boolean furnished, String cityQuad, double cost, Landlord landlord, PropertyState state) {
+        regProperty = new Property();
+        regProperty.setAddress(address);
+        regProperty.setBathroomNo(bathroomNo);
+        regProperty.setBedroomNo(bedroomNo);
+        regProperty.setCityQuad(cityQuad);
+        regProperty.setCost(cost);
+        regProperty.setFurnished(furnished);
+        regProperty.setLandlord(landlord);
+        regProperty.setStatus(state);
+
+        database.addProperty(regProperty);
     }
 }

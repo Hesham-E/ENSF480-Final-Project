@@ -19,7 +19,7 @@ public class RegistrationController extends DBInterfaceController{
         theView = view;
 
         theView.addActionListener (e -> {
-            createAccount(theView.getUsername(), theView.getPassword(), theView.getName(), theView.getEmail(), theView.getAccountType());
+            createAccount(theView.getGUIUsername(), theView.getGUIPassword(), theView.getGUIName(), theView.getGUIEmail(), theView.getGUIAccountType());
         });
     }
 
