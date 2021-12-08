@@ -13,7 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class RegissterAccountInfoGUI{
+public class RegisterAccountInfoGUI{
 	
 	private static JPanel registerpanel;
 	private static JLabel emaillabel;
