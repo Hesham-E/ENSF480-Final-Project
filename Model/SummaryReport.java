@@ -7,12 +7,16 @@ public class SummaryReport {
     private int totalNo_of_Properties; // Made numbers private from public and created getters and setters
     private int noOfActiveProperties;
     private int noOfRentedProperties;
-    private DBInterfaceController summaryController;
 
-    public SummaryReport() {
-        catalog = summaryController.getDatabase().getPropertyList();
-        generateReport();
+    public ArrayList<Property> getCatalog() {
+        return this.catalog;
     }
+
+    public void setCatalog(ArrayList<Property> catalog) {
+        this.catalog = catalog;
+    }
+
+    // private DBInterfaceController summaryController; removed this since it violates the package diagram
 
     //Removed update() function which is present in UML
 
