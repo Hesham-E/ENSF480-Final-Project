@@ -1,9 +1,51 @@
 package Controller;
 
-public class RegistrationController implements DBInterfaceController{
+import Model.Account;
+import Model.AccountType;
+import Model.Landlord;
+import Model.Manager;
+import Model.RegRenter;
+import Model.User;
+import View.RegisterAccountGUI;
 
-    //Couldn't we pass a User class into here rather than these 4 individually?
-    public void createAccount (String username, String password, String name, String email) {
+public class RegistrationController extends DBInterfaceController{
+    private RegisterAccountGUI theView;
+
+    public RegistrationController (Database db, RegisterAccountGUI view) {
+        super(db);
+        this.database = db;
+        db.initializeConnection();
         
+        theView = view;
+
+        theView.addActionListener (e -> {
+            createAccount(theView.getUsername(), theView.getPassword(), theView.getName(), theView.getEmail(), theView.getAccountType());
+        });
+    }
+
+    //added accountType
+    public void createAccount (String username, String password, String name, String email, AccountType accountType) {
+        User userInfo = new User();
+        userInfo.setUsername(username);
+        userInfo.setPassword(password);
+        userInfo.setName(name);
+        userInfo.setEmail(email);
+        userInfo.setAccountType(accountType);
+        Account account;
+
+        if (accountType == AccountType.LANDLORD) {
+            account = new Landlord();
+            account.setUserInfo(userInfo);
+        }
+        else if (accountType == AccountType.MANAGER) {
+            account = new Manager();
+            account.setUserInfo(userInfo);
+        }
+        else {
+            account = new RegRenter();
+            account.setUserInfo(userInfo);
+        }
+
+        super.addDatabaseAccount(account);
     }
 }
