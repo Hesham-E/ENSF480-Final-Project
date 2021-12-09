@@ -54,10 +54,24 @@ public class LoginAccountGUI{
 
 		regbutton = new JButton("Register");
 		regbutton.setBounds(100, 130, 200, 25);
+
+		//When "Register" button is pressed, go to register page
+		regbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent b) {
+				//code here
+			}
+		});
 		loginpanel.add(regbutton);
 
 		guest = new JButton("Continue without account");
 		guest.setBounds(100, 160, 200, 25);
+
+		//When "Continue without account" button is pressed go to search page
+		guest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent b) {
+				//code here
+			}
+		});
 		loginpanel.add(guest);
 
 		frame.setVisible(true);
