@@ -1,4 +1,4 @@
-package view;
+package View;
 
 public class redirect {
 
@@ -7,6 +7,13 @@ public class redirect {
 	}
 	
 	public static void backtologin(){
-		new RegisterPropertyGUI();
+		new LoginAccountGUI();
+	}
+	
+	public static void gotosearchbutton(){
+		new SearchGUI();
+	}
+	public static void rraccinfobutton(){
+		new RegRenterAccountInfoGUI();
 	}
 }
