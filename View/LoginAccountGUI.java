@@ -13,18 +13,16 @@ import javax.swing.JTextField;
 public class LoginAccountGUI {
 
 	private static JPanel loginpanel;
-	private static JLabel emaillabel;
-	private static JTextField useremail;
+	private static JLabel usernamelabel;
+	private static JTextField usernamefield;
 	private static JLabel passlabel;
-	private static JPasswordField pass;
+	private static JPasswordField passfield;
 	private static JButton button;
 	private static JButton regbutton;
 	private static JButton guest;
 	private static JButton extrab1;
 	private static JButton extrab2;
-	private static JLabel success;
 
-	
 	public LoginAccountGUI() {
 
 		JFrame frame = new JFrame();
@@ -32,45 +30,44 @@ public class LoginAccountGUI {
 		frame.setTitle("Welcome to RentSmarter Calgary!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel loginpanel = new JPanel();
+		loginpanel = new JPanel();
 		frame.add(loginpanel);
 		loginpanel.setLayout(null);
 
-		emaillabel = new JLabel("Email ID:");
-		emaillabel.setBounds(10, 20, 80, 25);
-		loginpanel.add(emaillabel);
+		usernamelabel = new JLabel("Email ID:");
+		usernamelabel.setBounds(10, 20, 80, 25);
+		loginpanel.add(usernamelabel);
 
-		useremail = new JTextField();
-		useremail.setBounds(100, 20, 160, 25);
-		loginpanel.add(useremail);
+		usernamefield = new JTextField();
+		usernamefield.setBounds(100, 20, 160, 25);
+		loginpanel.add(usernamefield);
 
 		passlabel = new JLabel("Password:");
 		passlabel.setBounds(10, 50, 80, 25);
 		loginpanel.add(passlabel);
 
-		pass = new JPasswordField();
-		pass.setBounds(100, 50, 160, 25);
-		loginpanel.add(pass);
+		passfield = new JPasswordField();
+		passfield.setBounds(100, 50, 160, 25);
+		loginpanel.add(passfield);
 
 		button = new JButton("Login");
 		button.setBounds(100, 100, 200, 25);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
-				//if(account in database is of a registered renter) {
-				//redirect.rraccinfobutton();	
-			    //}
-				//else if(account in database is of a landlord) {
-				//redirect.landlordinfobutton();	
-			    //}
-				String username = useremail.getText();
-				String password = pass.getText();
-				System.out.println("The user email entered is " + username + " and the password entered is " + password);
-				
-				
+				// if(account in database is of a registered renter) {
+				// redirect.rraccinfobutton();
+				// }
+				// else if(account in database is of a landlord) {
+				// redirect.landlordinfobutton();
+				// }
+				String username = usernamefield.getText();
+				String password = passfield.getText();
+				System.out
+						.println("The username entered is " + username + " and the password entered is " + password);
+
 				frame.setVisible(false);
-				
-			
-				}
+
+			}
 		});
 		loginpanel.add(button);
 
@@ -80,9 +77,8 @@ public class LoginAccountGUI {
 			public void actionPerformed(ActionEvent b) {
 				frame.setVisible(false);
 				redirect.registeraccountbutton();
-				}
 			}
-		);
+		});
 		loginpanel.add(regbutton);
 
 		guest = new JButton("Continue without account");
@@ -94,9 +90,10 @@ public class LoginAccountGUI {
 			}
 		});
 		loginpanel.add(guest);
-		
-		//the buttons below would be removed eventually once we can get the database connected
-		//lip= landlord info page
+
+		// the buttons below would be removed eventually once we can get the database
+		// connected
+		// lip= landlord info page
 		extrab1 = new JButton("LIP");
 		extrab1.setBounds(100, 190, 100, 25);
 		extrab1.addActionListener(new ActionListener() {
@@ -106,8 +103,8 @@ public class LoginAccountGUI {
 			}
 		});
 		loginpanel.add(extrab1);
-		
-		//rrip= reg renter info page
+
+		// rrip= reg renter info page
 		extrab2 = new JButton("RRIP");
 		extrab2.setBounds(100, 220, 100, 25);
 		extrab2.addActionListener(new ActionListener() {
@@ -117,8 +114,24 @@ public class LoginAccountGUI {
 			}
 		});
 		loginpanel.add(extrab2);
-		
+
 		frame.setVisible(true);
+	}
+
+	public static JTextField getUsernamefield() {
+		return usernamefield;
+	}
+
+	public static void setUsernamefield(JTextField usernamefield) {
+		LoginAccountGUI.usernamefield = usernamefield;
+	}
+
+	public static JPasswordField getPassfield() {
+		return passfield;
+	}
+
+	public static void setPassfield(JPasswordField passfield) {
+		LoginAccountGUI.passfield = passfield;
 	}
 
 }
