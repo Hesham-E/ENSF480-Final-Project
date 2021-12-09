@@ -27,7 +27,7 @@ public class LoginAccountGUI {
 
 		JFrame frame = new JFrame();
 		frame.setSize(400, 250);
-		frame.setTitle("Login Page");
+		frame.setTitle("Welcome to RentSmarter Calgary!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel loginpanel = new JPanel();
@@ -57,6 +57,8 @@ public class LoginAccountGUI {
 				String username = useremail.getText();
 				String password = pass.getText();
 				System.out.println("The useremail entered is " + username + " and the password entered is " + password);
+				frame.setVisible(false);
+				redirect.rraccinfobutton();
 			}
 		});
 		loginpanel.add(button);
@@ -77,7 +79,7 @@ public class LoginAccountGUI {
 		guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent c) {
 				frame.setVisible(false);
-				redirect.gotorenterbutton();
+				redirect.gotosearchbutton();
 			}
 		});
 		loginpanel.add(guest);
