@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +23,7 @@ public class LoginAccountGUI {
 	private static JLabel success;
 
 	
-	public static void main(String[] args) {
+	public LoginAccountGUI() {
 
 		JFrame frame = new JFrame();
 		frame.setSize(400, 250);
@@ -75,8 +75,9 @@ public class LoginAccountGUI {
 		guest = new JButton("Continue without account");
 		guest.setBounds(100, 160, 200, 25);
 		guest.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent b) {
-				//code here
+			public void actionPerformed(ActionEvent c) {
+				frame.setVisible(false);
+				redirect.gotorenterbutton();
 			}
 		});
 		loginpanel.add(guest);
