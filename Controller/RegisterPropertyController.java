@@ -11,8 +11,7 @@ public class RegisterPropertyController extends DBInterfaceController{
 
     public RegisterPropertyController (Database db, RegisterPropertyGUI view) {
         super(db);
-        this.database = db;
-        db.initializeConnection();
+        database.initializeConnection();
         
         theView = view;
 

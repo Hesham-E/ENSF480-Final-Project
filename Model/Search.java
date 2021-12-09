@@ -74,6 +74,6 @@ public class Search implements Observer{
     //REMOVED  getSubscribed and added it to RegRenter as method "subscribeToSearch"
 
     public void getNotifiedByEmail() {
-        //We can print something like "email sent! without sending anything"
+        System.out.println("Subscribers notified by email!");
     }
 }
