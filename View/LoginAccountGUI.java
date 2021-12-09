@@ -20,13 +20,15 @@ public class LoginAccountGUI {
 	private static JButton button;
 	private static JButton regbutton;
 	private static JButton guest;
+	private static JButton extrab1;
+	private static JButton extrab2;
 	private static JLabel success;
 
 	
 	public LoginAccountGUI() {
 
 		JFrame frame = new JFrame();
-		frame.setSize(400, 250);
+		frame.setSize(400, 300);
 		frame.setTitle("Welcome to RentSmarter Calgary!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -54,12 +56,21 @@ public class LoginAccountGUI {
 		button.setBounds(100, 100, 200, 25);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
+				//if(account in database is of a registered renter) {
+				//redirect.rraccinfobutton();	
+			    //}
+				//else if(account in database is of a landlord) {
+				//redirect.landlordinfobutton();	
+			    //}
 				String username = useremail.getText();
 				String password = pass.getText();
-				System.out.println("The useremail entered is " + username + " and the password entered is " + password);
+				System.out.println("The user email entered is " + username + " and the password entered is " + password);
+				
+				
 				frame.setVisible(false);
-				redirect.rraccinfobutton();
-			}
+				
+			
+				}
 		});
 		loginpanel.add(button);
 
@@ -84,7 +95,29 @@ public class LoginAccountGUI {
 		});
 		loginpanel.add(guest);
 		
-
+		//the buttons below would be removed eventually once we can get the database connected
+		//lip= landlord info page
+		extrab1 = new JButton("LIP");
+		extrab1.setBounds(100, 190, 100, 25);
+		extrab1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent c) {
+				frame.setVisible(false);
+				redirect.landlordinfobutton();
+			}
+		});
+		loginpanel.add(extrab1);
+		
+		//rrip= reg renter info page
+		extrab2 = new JButton("RRIP");
+		extrab2.setBounds(100, 220, 100, 25);
+		extrab2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent c) {
+				frame.setVisible(false);
+				redirect.rraccinfobutton();
+			}
+		});
+		loginpanel.add(extrab2);
+		
 		frame.setVisible(true);
 	}
 
