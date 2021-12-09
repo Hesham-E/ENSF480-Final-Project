@@ -1,8 +1,7 @@
-package View;
+package view;
 
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//still working on this
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,7 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class RegisterAccountInfoGUI{
+public class RegGUI{
 	
 	private static JPanel registerpanel;
 	private static JLabel emaillabel;
@@ -27,15 +26,15 @@ public class RegisterAccountInfoGUI{
 	private static JComboBox usertypebox;
 	static String[] userTypes = {"Landlord","Renter"};
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setSize(700,450);
-		frame.setTitle("Registeration Page");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public RegGUI() {
+		JFrame regframe = new JFrame();
+		regframe.setSize(700,450);
+		regframe.setTitle("Registeration Page");
+		regframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		registerpanel = new JPanel();
-		frame.add(registerpanel);
+		regframe.add(registerpanel);
 		registerpanel.setLayout(null);
 		
 		emaillabel = new JLabel("Please enter a valid Email ID:");
@@ -46,7 +45,7 @@ public class RegisterAccountInfoGUI{
 	    useremail.setBounds(200,20,160,25);
 		registerpanel.add(useremail);
 		
-		passlabel = new JLabel("Enter a preffered password:");
+		passlabel = new JLabel("Enter a password:");
 		passlabel.setBounds(10,50,200,25);
 		registerpanel.add(passlabel);
 		
@@ -70,20 +69,23 @@ public class RegisterAccountInfoGUI{
         usertypebox.setBounds(200, 110, 160, 25);
         registerpanel.add(usertypebox);   
 	
+        Object selection = usertypebox.getSelectedItem();
 		regbutton = new JButton("Register");
 		regbutton.setBounds(200,300,200,50);
-//		button.addActionListener(new ActionListener(){
-//			public void actionPerformed(ActionEvent a){
-//			String username = useremail.getText();
-//            String password = pass.getText();
-//            System.out.println(username + ", " + password);
-//		}
-//		});
+		regbutton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent a){
+				regframe.setVisible(false);
+				if(selection=="Landlord"){
+					redirect.backtologin();
+				}
+				
+		}
+		});
 		registerpanel.add(regbutton);
 		
 		
 		
-		frame.setVisible(true);
+		regframe.setVisible(true);
 	}
 
 }
