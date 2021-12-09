@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -20,6 +21,7 @@ public class LoginAccountGUI {
 	private static JButton button;
 	private static JButton regbutton;
 	private static JButton guest;
+	private static JButton forgotpass;
 	private static JButton extrab1;
 	private static JButton extrab2;
 
@@ -34,7 +36,7 @@ public class LoginAccountGUI {
 		frame.add(loginpanel);
 		loginpanel.setLayout(null);
 
-		usernamelabel = new JLabel("Email ID:");
+		usernamelabel = new JLabel("Username:");
 		usernamelabel.setBounds(10, 20, 80, 25);
 		loginpanel.add(usernamelabel);
 
@@ -62,8 +64,7 @@ public class LoginAccountGUI {
 				// }
 				String username = usernamefield.getText();
 				String password = passfield.getText();
-				System.out
-						.println("The username entered is " + username + " and the password entered is " + password);
+				System.out.println("The username entered is " + username + " and the password entered is " + password);
 
 				frame.setVisible(false);
 
@@ -90,12 +91,28 @@ public class LoginAccountGUI {
 			}
 		});
 		loginpanel.add(guest);
+		
+		forgotpass = new JButton("Forgot Password?");
+		forgotpass.setBounds(100, 190, 200, 25);
+		forgotpass.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent c) {
+				if (usernamefield.getText().isEmpty()==true) {
+					   JOptionPane.showMessageDialog(null, "Entered username is invalid.", "Whoops", JOptionPane.ERROR_MESSAGE);
+					   frame.setVisible(true);
+				} 
+				else {
+					JOptionPane.showMessageDialog(frame, "Please check your email and follow the instructions to reset password.");
+			    	redirect.backtologin();
+				}
+			}
+		});
+		loginpanel.add(forgotpass);
 
 		// the buttons below would be removed eventually once we can get the database
 		// connected
 		// lip= landlord info page
 		extrab1 = new JButton("LIP");
-		extrab1.setBounds(100, 190, 100, 25);
+		extrab1.setBounds(100, 220, 99, 25);
 		extrab1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent c) {
 				frame.setVisible(false);
@@ -106,7 +123,7 @@ public class LoginAccountGUI {
 
 		// rrip= reg renter info page
 		extrab2 = new JButton("RRIP");
-		extrab2.setBounds(100, 220, 100, 25);
+		extrab2.setBounds(201, 220, 100, 25);
 		extrab2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent c) {
 				frame.setVisible(false);
