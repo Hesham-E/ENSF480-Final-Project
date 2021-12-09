@@ -18,10 +18,20 @@ public class SummaryReportController extends DBInterfaceController{
         view = theView;
         database = theDatabase;
 
+        view.addActionListener (e -> {
+            updateReport();
+        });
+    }
+
+    public void updateReport () {
         model.setCatalog(database.getPropertyList());
+        model.setTimePeriod(view.getGUITimePeriod());
         model.generateReport();
-        view.setGUIActiveProperties(model.getNoOfActiveProperties());
-        view.setGUIRentedProperties(model.getNoOfRentedProperties());
-        view.setGUITotaleProperties(model.getTotalNo_of_Properties());
+
+        view.setGUINoOfActiveProperties(model.getNoOfActiveProperties());
+        view.setGUINoOfRentedProperties(model.getNoOfRentedProperties());
+        view.setGUITotalNo_of_Properties(model.getTotalNo_of_Properties());
+
+        view.setGUIRentedProperties(model.getPropertiesRentedInPeriod());
     }
 }

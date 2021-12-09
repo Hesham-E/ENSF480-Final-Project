@@ -1,19 +1,48 @@
 package Model;
 
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 
 public class SummaryReport {
     private ArrayList<Property> catalog;
+    private ArrayList<Property> propertiesRentedInPeriod;
+    private int timePeriod; //in days
+    private Date today;
     private int totalNo_of_Properties; // Made numbers private from public and created getters and setters
     private int noOfActiveProperties;
     private int noOfRentedProperties;
 
+    public ArrayList<Property> getPropertiesRentedInPeriod() {
+        return this.propertiesRentedInPeriod;
+    }
+
+    public void setPropertiesRentedInPeriod(ArrayList<Property> propertiesRentedInPeriod) {
+        this.propertiesRentedInPeriod = propertiesRentedInPeriod;
+    }
+    
     public ArrayList<Property> getCatalog() {
         return this.catalog;
     }
 
     public void setCatalog(ArrayList<Property> catalog) {
         this.catalog = catalog;
+    }
+
+    public int getTimePeriod() {
+        return this.timePeriod;
+    }
+
+    public void setTimePeriod(int timePeriod) {
+        this.timePeriod = timePeriod;
+    };
+
+    public Date getToday() {
+        return this.today;
+    }
+
+    public void setToday(Date today) {
+        this.today = today;
     }
 
     // private DBInterfaceController summaryController; removed this since it violates the package diagram
@@ -36,9 +65,17 @@ public class SummaryReport {
     public int countActiveProperties() {
         noOfActiveProperties = 0;
 
+        long msDiff = 0;
+        long dayDiff = 0;
         for (Property p : catalog) {
-            if (p.getStatus() == PropertyState.ACTIVE)
-                noOfActiveProperties++;
+            if (p.getStatus() == PropertyState.ACTIVE) {
+                msDiff = Math.abs(today.getTime() - p.getDateListed().getTime());
+                dayDiff = TimeUnit.DAYS.convert(msDiff, TimeUnit.MILLISECONDS);
+
+                if (dayDiff <= timePeriod) {
+                    noOfActiveProperties++;
+                }
+            }
         }
         return noOfActiveProperties;
     }
@@ -46,9 +83,18 @@ public class SummaryReport {
     public int countRentedProperties() {
         noOfRentedProperties = 0;
 
+        long msDiff = 0;
+        long dayDiff = 0;
         for (Property p : catalog) {
-            if (p.getStatus() == PropertyState.RENTED)
-                noOfRentedProperties++;
+            if (p.getStatus() == PropertyState.RENTED) {
+                msDiff = Math.abs(today.getTime() - p.getDateRented().getTime());
+                dayDiff = TimeUnit.DAYS.convert(msDiff, TimeUnit.MILLISECONDS);
+
+                if (dayDiff <= timePeriod) {
+                    noOfRentedProperties++;
+                    propertiesRentedInPeriod.add(p);
+                }
+            }
         }
         return noOfRentedProperties;
     }
