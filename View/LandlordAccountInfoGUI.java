@@ -41,6 +41,10 @@ public class LandlordAccountInfoGUI extends JFrame {
         this.propertyList = list;
     }
 
+    public ArrayList<Property> getGUIProperties(){
+        return this.propertyList;
+    }
+
     public JButton getSaveChangesButton(){
         return SaveChangesButton;
     }
