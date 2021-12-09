@@ -7,11 +7,12 @@ import Model.Property;
 import java.util.ArrayList;
 
 //Controls what information from database gets shown in the Landlord account page
-public class LandlordAccountController implements AccountController {
+public class LandlordAccountController extends AccountController {
     private Landlord theModel;
     private LandlordAccountInfoGUI theView;
 
-    LandlordAccountController(Landlord model, LandlordAccountInfoGUI view){
+    LandlordAccountController(Landlord model, LandlordAccountInfoGUI view, Database db){
+        super(db);
         this.theModel = model;
         this.theView = view;
 
