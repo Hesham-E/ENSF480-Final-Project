@@ -23,6 +23,7 @@ public class RegistrationController extends DBInterfaceController{
     }
 
     //added accountType
+    //Creates an account in the database based on what is inputted in the GUI
     public void createAccount (String username, String password, String name, String email, AccountType accountType) {
         User userInfo = new User();
         userInfo.setUsername(username);

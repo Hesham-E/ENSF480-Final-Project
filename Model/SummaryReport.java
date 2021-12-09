@@ -12,6 +12,7 @@ public class SummaryReport {
     private int totalNo_of_Properties; // Made numbers private from public and created getters and setters
     private int noOfActiveProperties;
     private int noOfRentedProperties;
+     // private DBInterfaceController summaryController; removed this since it violates the package diagram
 
     public ArrayList<Property> getPropertiesRentedInPeriod() {
         return this.propertiesRentedInPeriod;
@@ -45,23 +46,26 @@ public class SummaryReport {
         this.today = today;
     }
 
-    // private DBInterfaceController summaryController; removed this since it violates the package diagram
+   
 
     //Removed update() function which is present in UML
 
-    //Also can we make this into the constructor? Or do we have it this way since the catalog may change during runtime?
+    //Catch all function that updates all members of the SummaryReport
     public void generateReport() { //changed name from displayReport() since we have a GUI
         countActiveProperties();
         countProperties();
         countRentedProperties();
     }
-    
+
+    //Counts all properties in the database
     public int countProperties() {
         totalNo_of_Properties = catalog.size();
 
         return totalNo_of_Properties;
-    }   
+    }  
 
+    //Counts all active properties within a certain time period
+    //Returns a number
     public int countActiveProperties() {
         noOfActiveProperties = 0;
 
@@ -80,6 +84,9 @@ public class SummaryReport {
         return noOfActiveProperties;
     }
 
+    //Counts all rented propeerties within a certain time period
+    //Additionally, updates an ArrayList with these specific properties
+    //Returns a number 
     public int countRentedProperties() {
         noOfRentedProperties = 0;
 

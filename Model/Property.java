@@ -2,6 +2,9 @@ package Model;
 
 import java.util.Date;
 
+
+//Data container for a property
+//All attributes are accessible through getters and setters
 public class Property {
     private int houseid; 
     private PropertyState status;

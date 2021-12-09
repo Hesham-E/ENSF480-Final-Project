@@ -22,6 +22,7 @@ public class RegisterPropertyController extends DBInterfaceController{
         });
     }
 
+    //Registers property in database based on what is inputted on GUI
     public void registerProperty (String address, String type, int bedroomNo, int bathroomNo, boolean furnished, String cityQuad, double cost, Landlord landlord, PropertyState state) {
         regProperty = new Property();
         regProperty.setAddress(address);
