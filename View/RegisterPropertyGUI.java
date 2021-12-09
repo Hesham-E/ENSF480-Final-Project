@@ -1,12 +1,12 @@
 package View;
 
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -27,6 +27,7 @@ public class RegisterPropertyGUI{
 	private static JLabel pricelabel;
 	private static JTextField pricefield;
 	private static JButton regbutton;
+	private static JButton cancelbutton;
 	static String[] htypes = {"Apartment","Duplex","Condo","Basement",
 			                   "Loft","House","Townhouse","Shared"};
 	static String[] bed = {"Studio","1 Bed","1 + Den","2 Bed","2 + Den",
@@ -35,7 +36,7 @@ public class RegisterPropertyGUI{
 	
 	public RegisterPropertyGUI(){
 		JFrame frame = new JFrame();
-		frame.setSize(700,450);
+		frame.setSize(500,450);
 		frame.setTitle("Propery Registeration Page");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -93,19 +94,93 @@ public class RegisterPropertyGUI{
 	 	hregisterpanel.add(pricefield);
 	
 		regbutton = new JButton("Register property");
-		regbutton.setBounds(200,300,200,50);
-//		button.addActionListener(new ActionListener(){
-//			public void actionPerformed(ActionEvent a){
-//			String username = useremail.getText();
-//          String password = pass.getText();
-//          System.out.println(username + ", " + password);
-//		}
-//		});
+		regbutton.setBounds(100,230,200,50);
+		regbutton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent a){
+				if(locfield.getText().isEmpty()==true){
+					JOptionPane.showMessageDialog(null, "The location hasn't been entered.", "Whoops", JOptionPane.ERROR_MESSAGE);
+					frame.setVisible(true);
+				}
+				else if(yearfield.getText().isEmpty()==true){
+					JOptionPane.showMessageDialog(null, "The year of built hasn't been entered.", "Whoops", JOptionPane.ERROR_MESSAGE);
+					frame.setVisible(true);
+				}
+				else if(pricefield.getText().isEmpty()==true){
+					JOptionPane.showMessageDialog(null, "The expected price hasn't been entered.", "Whoops", JOptionPane.ERROR_MESSAGE);
+					frame.setVisible(true);
+				}
+				else {
+					frame.setVisible(false);
+					JOptionPane.showMessageDialog(frame, "Congrats! The property has now been listed.");
+					redirect.landlordinfobutton();
+			
+			}
+			}
+		});
 		hregisterpanel.add(regbutton);
+		
+		cancelbutton = new JButton("Cancel");
+		cancelbutton.setBounds(100, 300, 200, 50);
+		cancelbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent b) {
+				frame.setVisible(false);
+				redirect.landlordinfobutton();
+				}
+			}
+		);
+		hregisterpanel.add(cancelbutton);
 		
 		
 		
 		frame.setVisible(true);
+	}
+
+	public static JTextField getLocfield() {
+		return locfield;
+	}
+
+	public static void setLocfield(JTextField locfield) {
+		RegisterPropertyGUI.locfield = locfield;
+	}
+
+	public static JTextField getYearfield() {
+		return yearfield;
+	}
+
+	public static void setYearfield(JTextField yearfield) {
+		RegisterPropertyGUI.yearfield = yearfield;
+	}
+
+	public static JTextField getPricefield() {
+		return pricefield;
+	}
+
+	public static void setPricefield(JTextField pricefield) {
+		RegisterPropertyGUI.pricefield = pricefield;
+	}
+
+	public static String[] getHtypes() {
+		return htypes;
+	}
+
+	public static void setHtypes(String[] htypes) {
+		RegisterPropertyGUI.htypes = htypes;
+	}
+
+	public static String[] getBed() {
+		return bed;
+	}
+
+	public static void setBed(String[] bed) {
+		RegisterPropertyGUI.bed = bed;
+	}
+
+	public static String[] getBath() {
+		return bath;
+	}
+
+	public static void setBath(String[] bath) {
+		RegisterPropertyGUI.bath = bath;
 	}
 
 }
