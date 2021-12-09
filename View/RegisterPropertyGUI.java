@@ -1,4 +1,4 @@
-package View;
+package view;
 
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
@@ -33,7 +33,7 @@ public class RegisterPropertyGUI{
 			                   "3 Bed", "3 + Den","4+ Bed"};
 	static String[] bath = {"1 Bath","1.5 Bath","2 Bath","2.5 Bath","3+ Bath"};
 	
-	public static void main(String[] args) {
+	public RegisterPropertyGUI(){
 		JFrame frame = new JFrame();
 		frame.setSize(700,450);
 		frame.setTitle("Propery Registeration Page");
@@ -92,7 +92,7 @@ public class RegisterPropertyGUI{
 		pricefield.setBounds(200,173,160,25);
 	 	hregisterpanel.add(pricefield);
 	
-		regbutton = new JButton("Register the property");
+		regbutton = new JButton("Register property");
 		regbutton.setBounds(200,300,200,50);
 //		button.addActionListener(new ActionListener(){
 //			public void actionPerformed(ActionEvent a){
