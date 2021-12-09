@@ -13,7 +13,6 @@ public class RegistrationController extends DBInterfaceController{
 
     public RegistrationController (Database db, RegisterAccountGUI view) {
         super(db);
-        this.database = db;
         db.initializeConnection();
         
         theView = view;
