@@ -3,7 +3,6 @@ package Controller;
 import Model.AccountServer;
 import Model.User;
 import View.LoginAccountGUI;
-import java.awt.event.*;
 
 public class LoginController extends DBInterfaceController{
     private AccountServer instance;
@@ -16,18 +15,23 @@ public class LoginController extends DBInterfaceController{
 
         //When "Login" button is pressed, validate username and password
         theView.getLoginButton().addActionListener (e -> {
-            String username = theView.getGUIUsername();
-            String password = theView.getGUIPassword();
+            String username = theView.getUsernamefield().toString();
+            String password = theView.getPassfield().toString();
             validate(username, password);
         });      
     }
 
     public void validate (String username, String password) {
-        instance.validate(username, password);
+        if (instance.validate(username, password) == null) {
+            theView.setLoginValid(false);
+        }
+        else {
+            theView.setLoginValid(true);
+        }
     }
 
     public String getDatabaseAccountType(){
-        User user = database.getAccountInfo(theView.getGUIUsername());
+        User user = database.getAccountInfo(theView.getUsernamefield().toString());
         return user.getAccountType().toString();
     }
 }
