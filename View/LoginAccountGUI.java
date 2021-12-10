@@ -26,7 +26,7 @@ public class LoginAccountGUI {
 	private static JButton extrab2;
 	private static JButton extrab3;
 	private static boolean loginValid;
-	private String accountType;
+	static String accountType;
 
 
 
