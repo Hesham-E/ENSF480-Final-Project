@@ -73,4 +73,4 @@ public class GeneratedReportGUI {
 		
 		new GeneratedReportGUI();
 	}
-}
+} //unsure
