@@ -24,6 +24,7 @@ public class LoginAccountGUI {
 	private static JButton forgotpass;
 	private static JButton extrab1;
 	private static JButton extrab2;
+	private static JButton extrab3;
 
 	public LoginAccountGUI() {
 
@@ -91,16 +92,17 @@ public class LoginAccountGUI {
 			}
 		});
 		loginpanel.add(guest);
-		
+
 		forgotpass = new JButton("Forgot Password?");
 		forgotpass.setBounds(100, 190, 200, 25);
 		forgotpass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent c) {
-				if (usernamefield.getText().isEmpty()==true) {
-					   JOptionPane.showMessageDialog(null, "Entered username is invalid.", "Whoops", JOptionPane.ERROR_MESSAGE);
-				} 
-				else {
-					JOptionPane.showMessageDialog(frame, "Please check your email and follow the instructions to reset password.");
+				if (usernamefield.getText().isEmpty() == true) {
+					JOptionPane.showMessageDialog(null, "Entered username is invalid.", "Whoops",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(frame,
+							"Please check your email and follow the instructions to reset password.");
 				}
 			}
 		});
@@ -130,8 +132,22 @@ public class LoginAccountGUI {
 		});
 		loginpanel.add(extrab2);
 
+		extrab3 = new JButton("MIP");
+		extrab3.setBounds(201, 270, 100, 25);
+		extrab3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent c) {
+				frame.setVisible(false);
+				redirect.managerinfobutton();
+			}
+		});
+		loginpanel.add(extrab3);
+
 		frame.setVisible(true);
 	}
+
+
+
+
 
 	public static JTextField getUsernamefield() {
 		return usernamefield;
