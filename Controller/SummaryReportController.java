@@ -17,9 +17,8 @@ public class SummaryReportController extends DBInterfaceController{
         model = theModel;
         view = theView;
 
-        view.addActionListener (e -> {
-            updateReport();
-        });
+        updateReport();
+
     }
 
     public void updateReport () {
