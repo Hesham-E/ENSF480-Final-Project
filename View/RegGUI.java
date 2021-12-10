@@ -19,6 +19,8 @@ public class RegGUI{
 	private static JPanel registerpanel;
 	private static JLabel emaillabel;
 	private static JTextField emailfield;
+	private static JLabel namelabel;
+	private static JTextField namefield;
 	private static JLabel usernamelabel;
 	private static JTextField usernamefield;
 	private static JLabel passlabel;
@@ -30,8 +32,8 @@ public class RegGUI{
 	private static JLabel usertype;
 	private static JComboBox usertypebox;
 	static String[] userTypes = {"Landlord","Renter"};
-	private boolean uniqueemail;
-	private boolean uniqueusername;
+	public boolean uniqueemail=true;
+	public boolean uniqueusername=true;
 	
 	public RegGUI() {
 		JFrame regframe = new JFrame();
@@ -44,53 +46,67 @@ public class RegGUI{
 		regframe.add(registerpanel);
 		registerpanel.setLayout(null);
 		
+		namelabel = new JLabel("Enter your name:");
+		namelabel.setBounds(10,10,200,30);
+		registerpanel.add(namelabel);
+		
+		namefield = new JTextField();
+	    namefield.setBounds(200,10,160,25);
+		registerpanel.add(namefield);
+		
 		emaillabel = new JLabel("Enter a valid Email ID:");
-		emaillabel.setBounds(10,10,200,30);
+		emaillabel.setBounds(10,50,200,30);
 		registerpanel.add(emaillabel);
 		
 		emailfield = new JTextField();
-	    emailfield.setBounds(200,10,160,25);
+	    emailfield.setBounds(200,50,160,25);
 		registerpanel.add(emailfield);
 		
+		
+		
 		usernamelabel = new JLabel("Enter an unique username:");
-		usernamelabel.setBounds(10,50,200,25);
+		usernamelabel.setBounds(10,90,200,25);
 		registerpanel.add(usernamelabel);
 		
 		usernamefield = new JTextField();
-	    usernamefield.setBounds(200,50,160,25);
+	    usernamefield.setBounds(200,90,160,25);
 		registerpanel.add(usernamefield);
 		
 		passlabel = new JLabel("Enter a password:");
-		passlabel.setBounds(10,90,200,30);
+		passlabel.setBounds(10,130,200,30);
 		registerpanel.add(passlabel);
 		
 		passfield = new JPasswordField();
-		passfield.setBounds(200,90,160,25);
+		passfield.setBounds(200,130,160,25);
 		registerpanel.add(passfield);
 		
 		confirmpasslabel = new JLabel("Re-enter your password:");
-		confirmpasslabel.setBounds(10,130,200,30);
+		confirmpasslabel.setBounds(10,170,200,30);
 		registerpanel.add(confirmpasslabel);
 
 		confirmpassfield = new JPasswordField();
-		confirmpassfield.setBounds(200,130,160,25);
+		confirmpassfield.setBounds(200,170,160,25);
 		registerpanel.add(confirmpassfield);
 		
 		usertype = new JLabel("Select the type of account");
-        usertype.setBounds(10, 170, 160, 25);
+        usertype.setBounds(10, 210, 160, 25);
         registerpanel.add(usertype);
         
 		usertypebox = new JComboBox(userTypes);
-        usertypebox.setBounds(200, 170, 160, 25);
+        usertypebox.setBounds(200, 210, 160, 25);
         registerpanel.add(usertypebox);   
 	
         Object selection = usertypebox.getSelectedItem();
 		regbutton = new JButton("Register");
-		regbutton.setBounds(200,220,200,50);
+		regbutton.setBounds(200,260,200,50);
 		regbutton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent a){
 				regframe.setVisible(false);
-				if(emailfield.getText().isEmpty()==true||uniqueemail==false){
+				if(namefield.getText().isEmpty()==true){
+					JOptionPane.showMessageDialog(null, "Name cannot be empty.", "Whoops", JOptionPane.ERROR_MESSAGE);
+					regframe.setVisible(true);
+				}
+				else if(emailfield.getText().isEmpty()==true||uniqueemail==false){
 					JOptionPane.showMessageDialog(null, "Invalid email entered.", "Whoops", JOptionPane.ERROR_MESSAGE);
 					regframe.setVisible(true);
 				}
@@ -123,7 +139,7 @@ public class RegGUI{
 		registerpanel.add(regbutton);
 		
 		loginbutton = new JButton("Login instead?");
-		loginbutton.setBounds(200,300,200,50);
+		loginbutton.setBounds(200,320,200,50);
 		loginbutton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent a){
 				regframe.setVisible(false);
@@ -136,56 +152,44 @@ public class RegGUI{
 		regframe.setVisible(true);
 	}
 
-	public JButton getRegButton () {
-		return regbutton;
+	public static JTextField getNamefield() {
+		return namefield;
 	}
 
-	public static String getEmailfield() {
-		return emailfield.getText();
+	public static void setNamefield(JTextField namefield) {
+		RegGUI.namefield = namefield;
+	}
+
+	public static JTextField getEmailfield() {
+		return emailfield;
 	}
 
 	public static void setEmailfield(JTextField emailfield) {
 		RegGUI.emailfield = emailfield;
 	}
 
-	public static String getUsernamefield() {
-		return usernamefield.getText();
+	public static JTextField getUsernamefield() {
+		return usernamefield;
 	}
 
 	public static void setUsernamefield(JTextField usernamefield) {
 		RegGUI.usernamefield = usernamefield;
 	}
 
-	public static String getPassfield() {
-		return passfield.getText();
+	public static JPasswordField getPassfield() {
+		return passfield;
 	}
 
 	public static void setPassfield(JPasswordField passfield) {
 		RegGUI.passfield = passfield;
 	}
 
-	public static String getUserType() {
-		return usertypebox.getSelectedItem().toString();
+	public static String[] getUserTypes() {
+		return userTypes;
 	}
 
 	public static void setUserTypes(String[] userTypes) {
 		RegGUI.userTypes = userTypes;
-	}
-
-	public boolean getUniqueemail() {
-		return this.uniqueemail;
-	}
-
-	public void setUniqueemail(boolean uniqueemail) {
-		this.uniqueemail = uniqueemail;
-	}
-
-	public boolean getUniqueUsername() {
-		return this.uniqueusername;
-	}
-
-	public void setUniqueUsername(boolean uniqueusername) {
-		this.uniqueusername = uniqueusername;
 	}
 	
 }
