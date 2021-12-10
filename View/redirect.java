@@ -29,8 +29,11 @@ public class redirect {
 		new RegisterPropertyGUI();
 	}
 	
+	public static void gotogeneratedreport(){
+		new GeneratedReportGUI();
+	}
+
 	public static void gotosumbutton(){
 		new SummaryReportGUI();
 	}
-
 }
