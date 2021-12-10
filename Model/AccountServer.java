@@ -18,8 +18,8 @@ public class AccountServer {
         return instance; 
     }
 
-    public void add(String username, String password) {
-    	User x = {username, password};
+    public void add(String username, String password, String name, String email, String accountType) {
+    	User x = new User(username, password, name, email, accountType);
     	int found = 0;
     	for(int i = 0; i < users.size(); i++) 
             if(users.get(i).getName().equals(username) == true ){ 
