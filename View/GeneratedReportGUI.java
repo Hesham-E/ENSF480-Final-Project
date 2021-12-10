@@ -61,12 +61,14 @@ public class GeneratedReportGUI {
         list_rented.setBounds(10, 20, 80, 25);
 		reportPanel.add(list_rented);
 
+        String list = "";
         for (int i = 0; i < rented.size(); i++ ){
-            count = new JLabel("Landlord: " + rented.get(i).getLandlord().getUserInfo().getName() + 
+            list.append("Landlord: " + rented.get(i).getLandlord().getUserInfo().getName() + 
                                 " House ID: " + rented.get(i).getHouseid() + " Address: " + rented.get(i).getAddress() + "\n");
-		    count.setBounds(10, 20, 80, 25);
-		    reportPanel.add(count);
         }
+        count = new JLabel(list);
+		count.setBounds(10, 20, 80, 25);
+		reportPanel.add(count);
         frame.setVisible(true);
     }
     public static void main(String[] args) {
