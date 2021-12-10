@@ -3,6 +3,9 @@ package View;
 import javax.swing.*;
 import java.awt.event.*;
 
+import Model.Property;
+import Controller.SearchController;
+
 public class SearchGUI {
 
 	private static JPanel panel;
@@ -24,9 +27,12 @@ public class SearchGUI {
 	static String[] htypes = { "No preference", "Apartment", "Duplex", "Condo", "Basement", "Loft", "House",
 			"Townhouse", "Shared" };
 	static String[] area = { "No preference","NW", "SW", "NE", "SE" };
-	static String[] bed = { "No preference", "1","2","3","4","5" };
-	static String[] bath = { "No preference","1", "2","3" };
-	static String[] options = { "No preference", "Yes", "No" };
+	static String[] bed = { "No preference", "1", "2","3", "4", "5" };
+	static String[] bath = { "No preference", "1", "2","3" };
+	static String[] options = {"Yes", "No"};
+	
+	private SearchController searcher = new SearchController();
+	private ArrayList<Property> searchFind;
 
 	public SearchGUI() {
 //created a search frame 
@@ -92,8 +98,10 @@ public class SearchGUI {
 				String bed = bedbox.getSelectedItem().toString();
 				String bath = bathbox.getSelectedItem().toString();
 				String area = areabox.getSelectedItem().toString();
+				String furn = furnbox.getSelectedItem().toString();
 
-				System.out.println(htype + " " + bed + " " + bath + " " + area);
+				System.out.println(htype + " " + bed + " " + bath + " " + area + " " + furn);
+				searchFind = searcher.filterInputs(htype, bed, bath, area, furn);
 			}
 		});
 		panel.add(searchbutton);
