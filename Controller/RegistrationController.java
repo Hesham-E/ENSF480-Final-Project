@@ -6,29 +6,36 @@ import Model.Landlord;
 import Model.Manager;
 import Model.RegRenter;
 import Model.User;
-import View.RegisterAccountGUI;
+import View.RegGUI;
 
 public class RegistrationController extends DBInterfaceController{
-    private RegisterAccountGUI theView;
+    private RegGUI theView;
 
-    public RegistrationController (Database db, RegisterAccountGUI view) {
+    public RegistrationController (Database db, RegGUI view) {
         super(db);
         db.initializeConnection();
         
         theView = view;
 
-        theView.addActionListener (e -> {
-            createAccount(theView.getGUIUsername(), theView.getGUIPassword(), theView.getGUIName(), theView.getGUIEmail(), theView.getGUIAccountType());
+        theView.getRegButton().addActionListener (e -> {
+            createAccount(theView.getUsernamefield(), theView.getPassfield(), theView.getEmailfield(), theView.getEmailfield(), theView.getUserType());
         });
     }
 
     //added accountType
-    public void createAccount (String username, String password, String name, String email, AccountType accountType) {
+    public void createAccount (String username, String password, String name, String email, String accountTypeString) {
         User userInfo = new User();
+        AccountType accountType = AccountType.REGISTEREDRENTER;
         userInfo.setUsername(username);
         userInfo.setPassword(password);
         userInfo.setName(name);
         userInfo.setEmail(email);
+
+        if (accountTypeString.equals("Landlord"))
+            accountType = AccountType.LANDLORD;
+        else if (accountTypeString.equals("Renter"))
+            accountType = AccountType.REGISTEREDRENTER;
+            
         userInfo.setAccountType(accountType);
         Account account;
 

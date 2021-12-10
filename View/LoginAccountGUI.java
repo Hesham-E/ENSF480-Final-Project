@@ -25,6 +25,9 @@ public class LoginAccountGUI {
 	private static JButton extrab1;
 	private static JButton extrab2;
 	private static JButton extrab3;
+	private static boolean loginValid;
+
+
 
 	public LoginAccountGUI() {
 
@@ -63,6 +66,10 @@ public class LoginAccountGUI {
 			}
 			else if(passfield.getPassword().length== 0){
 				JOptionPane.showMessageDialog(null, "Password cannot be empty.", "Whoops", JOptionPane.ERROR_MESSAGE);
+				frame.setVisible(true);
+			}
+			else if (loginValid == false) {
+				JOptionPane.showMessageDialog(null, "Account does not exist in database", "Whoops", JOptionPane.ERROR_MESSAGE);
 				frame.setVisible(true);
 			}
 			else {
@@ -161,6 +168,10 @@ public class LoginAccountGUI {
 		frame.setVisible(true);
 	}
 
+	public static JButton getLoginButton () {
+		return button;
+	}
+
 	public static JTextField getUsernamefield() {
 		return usernamefield;
 	}
@@ -177,4 +188,11 @@ public class LoginAccountGUI {
 		LoginAccountGUI.passfield = passfield;
 	}
 
+	public static boolean getLoginValid() {
+		return loginValid;
+	}
+
+	public void setLoginValid(boolean validity) {
+		loginValid = validity;
+	}
 }

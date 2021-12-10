@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
+import Controller.Database;
 import Controller.SearchController;
 
 public class RegRenter extends Account{
@@ -13,10 +14,9 @@ public class RegRenter extends Account{
     }
     
     //NOT ON UML
-    public ArrayList<Property> performSearch (String type, Integer bedroomNo, Integer bathroomNo, boolean furnished, String cityQuad) {
-        Search query = new Search  (type, bedroomNo, bathroomNo, furnished, cityQuad);
-        SearchController DBInterface;
-        ArrayList<Property> similarProperties = DBInterface.findSimilarProperties(query); //This method does not exist yet
+    public ArrayList<Property> performSearch (String type, int bedroomNo, int bathroomNo, boolean furnished, String cityQuad) {
+        SearchController DBInterface = new SearchController(new Database());
+        ArrayList<Property> similarProperties = DBInterface.filterCatalog(type, bedroomNo, bathroomNo, furnished, cityQuad); //This method does not exist yet
         return similarProperties;
     } 
 

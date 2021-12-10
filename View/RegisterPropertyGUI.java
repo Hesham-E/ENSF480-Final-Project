@@ -31,9 +31,9 @@ public class RegisterPropertyGUI {
 	private static JButton regbutton;
 	private static JButton cancelbutton;
 	static String[] htypes = { "Apartment", "Duplex", "Condo", "Basement", "Loft", "House", "Townhouse", "Shared" };
-	static String[] area = { "NW", "SW", "NE", "SE", "Central" };
-	static String[] bed = { "Studio", "1 Bed", "1 + Den", "2 Bed", "2 + Den", "3 Bed", "3 + Den", "4+ Bed" };
-	static String[] bath = { "1 Bath", "1.5 Bath", "2 Bath", "2.5 Bath", "3+ Bath" };
+	static String[] area = { "NW", "SW", "NE", "SE" };
+	static int[] bed = { 1, 2,3,4,5 };
+	static int[] bath = { 1, 2,3 };
 	static String[] options = { "Yes", "No" };
 	boolean flag = true;
 

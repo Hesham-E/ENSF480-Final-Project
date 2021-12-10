@@ -1,8 +1,5 @@
 package Model;
 
-import Controller.AccountController;
-import Controller.ManagerAccountController;
-
 public class Manager extends Account{
     private SummaryReport report;
 

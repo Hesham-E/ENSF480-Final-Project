@@ -1,35 +1,34 @@
 package Controller;
 
-import java.util.ArrayList;
-
-import Model.Property;
 import Model.SummaryReport;
+import View.GeneratedReportGUI;
 import View.SummaryReportGUI;
 
 public class SummaryReportController extends DBInterfaceController{
     private SummaryReport model;
-    private SummaryReportGUI view;
+    private GeneratedReportGUI reportView;
+    private SummaryReportGUI intialView;
     
-    public SummaryReportController (SummaryReport theModel, SummaryReportGUI theView, Database theDatabase) {
+    public SummaryReportController (SummaryReport theModel, SummaryReportGUI summaryView, GeneratedReportGUI genereatedView, Database theDatabase) {
         super(theDatabase);
         database.initializeConnection();
         
         model = theModel;
-        view = theView;
+        reportView = genereatedView;
+        intialView = summaryView;
 
         updateReport();
-
     }
 
     public void updateReport () {
         model.setCatalog(database.getPropertyList());
-        model.setTimePeriod(view.getGUITimePeriod());
+        model.setTimePeriod(intialView.getGUITimePeriod());
         model.generateReport();
 
-        view.setGUINoOfActiveProperties(model.getNoOfActiveProperties());
-        view.setGUINoOfRentedProperties(model.getNoOfRentedProperties());
-        view.setGUITotalNo_of_Properties(model.getTotalNo_of_Properties());
+        reportView.setGUINoOfActiveProperties(model.getNoOfActiveProperties());
+        reportView.setGUINoOfRentedProperties(model.getNoOfRentedProperties());
+        reportView.setGUITotalNo_of_Properties(model.getTotalNo_of_Properties());
 
-        view.setGUIRentedProperties(model.getPropertiesRentedInPeriod());
+        reportView.setGUIRentedProperties(model.getPropertiesRentedInPeriod());
     }
 }
