@@ -16,9 +16,9 @@ public class RegRenterAccountController extends AccountController {
         this.theView = view;
         this.searchController = new SearchController(db);
 
-        //When "Save Changes" button gets pressed, save new property info into database
+        //When "Save Changes" button gets pressed, update subscribed properties for model and view
         theView.getSaveChangesButton().addActionListener (e -> {
-            updateDatabase();
+            updateGUISubscribedProperties();
         });
     }
 
