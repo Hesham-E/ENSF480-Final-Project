@@ -8,6 +8,14 @@ public class User {
     private String email;
     private AccountType accountType;
 
+    public User(String username, String password, String name, String email, String accountType){
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.accountType = AccountType.valueOf(accountType);
+    }
+
     public String getUsername() {
         return this.username;
     }
