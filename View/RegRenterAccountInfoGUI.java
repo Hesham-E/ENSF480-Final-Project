@@ -17,7 +17,7 @@ public class RegRenterAccountInfoGUI{
     private JTextField NameField;
     private JTextField EmailField;
     private JButton SearchPropertyButton;
-    private JButton EditPropertyButton;
+    private JButton ViewSubscriptionButton;
     private JButton RemovePropertyButton;
     private static JButton logoutbutton;
 
@@ -58,27 +58,17 @@ public class RegRenterAccountInfoGUI{
 	lpanel.add(SearchPropertyButton);
 	frame.setVisible(true);
 	
-	EditPropertyButton = new JButton("Edit existing property");
-	EditPropertyButton.setBounds(100, 40, 200, 25);
-	EditPropertyButton.addActionListener(new ActionListener() {
+	ViewSubscriptionButton = new JButton("View Subscriptions");
+	ViewSubscriptionButton.setBounds(100, 40, 200, 25);
+	ViewSubscriptionButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent b) {
 			frame.setVisible(false);
 			redirect.backtologin();
 			}
 		}
 	);
-	lpanel.add(EditPropertyButton);
+	lpanel.add(ViewSubscriptionButton);
 	
-	RemovePropertyButton = new JButton("Remove existing property");
-	RemovePropertyButton.setBounds(100, 70, 200, 25);
-	RemovePropertyButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent b) {
-			frame.setVisible(false);
-			//property removal code needed
-			}
-		}
-	);
-	lpanel.add(RemovePropertyButton);
     
 	logoutbutton = new JButton("View Listed Properties");
 	logoutbutton.setBounds(100, 100, 200, 25);
