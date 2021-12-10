@@ -16,6 +16,7 @@ public class RegisterPropertyGUI{
 	private static JPanel hregisterpanel;
 	private static JLabel loclabel;
 	private static JTextField locfield;
+	private static JComboBox areafield;
 	private static JLabel typelabel;
 	private static JComboBox typebox;
 	private static JLabel bedlabel;
@@ -30,13 +31,14 @@ public class RegisterPropertyGUI{
 	private static JButton cancelbutton;
 	static String[] htypes = {"Apartment","Duplex","Condo","Basement",
 			                   "Loft","House","Townhouse","Shared"};
+	static String[] area = {"NW","SW","NE","SE","Central"};
 	static String[] bed = {"Studio","1 Bed","1 + Den","2 Bed","2 + Den",
 			                   "3 Bed", "3 + Den","4+ Bed"};
 	static String[] bath = {"1 Bath","1.5 Bath","2 Bath","2.5 Bath","3+ Bath"};
 	
 	public RegisterPropertyGUI(){
 		JFrame frame = new JFrame();
-		frame.setSize(500,450);
+		frame.setSize(600,600);
 		frame.setTitle("Propery Registeration Page");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -50,8 +52,12 @@ public class RegisterPropertyGUI{
 		hregisterpanel.add(loclabel);
 		
 		locfield = new JTextField();
-	    locfield.setBounds(200,20,160,25);
+	    locfield.setBounds(200,20,250,25);
 		hregisterpanel.add(locfield);
+		
+		areafield = new JComboBox(area);
+        areafield.setBounds(451,20,75,25);
+        hregisterpanel.add(areafield);
 		
 		typelabel = new JLabel("Select type of house:");
 		typelabel.setBounds(10,50,200,25);
@@ -94,7 +100,7 @@ public class RegisterPropertyGUI{
 	 	hregisterpanel.add(pricefield);
 	
 		regbutton = new JButton("Register property");
-		regbutton.setBounds(100,230,200,50);
+		regbutton.setBounds(300,270,200,50);
 		regbutton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent a){
 				if(locfield.getText().isEmpty()==true){
@@ -120,7 +126,7 @@ public class RegisterPropertyGUI{
 		hregisterpanel.add(regbutton);
 		
 		cancelbutton = new JButton("Cancel");
-		cancelbutton.setBounds(100, 300, 200, 50);
+		cancelbutton.setBounds(50,270,200,50);
 		cancelbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent b) {
 				frame.setVisible(false);
@@ -159,28 +165,37 @@ public class RegisterPropertyGUI{
 		RegisterPropertyGUI.pricefield = pricefield;
 	}
 
-	public static String[] getHtypes() {
-		return htypes;
+	public static JComboBox getTypebox() {
+		return typebox;
 	}
 
-	public static void setHtypes(String[] htypes) {
-		RegisterPropertyGUI.htypes = htypes;
+	public static void setTypebox(JComboBox typebox) {
+		RegisterPropertyGUI.typebox = typebox;
 	}
 
-	public static String[] getBed() {
-		return bed;
+	public static JComboBox getBedbox() {
+		return bedbox;
 	}
 
-	public static void setBed(String[] bed) {
-		RegisterPropertyGUI.bed = bed;
+	public static void setBedbox(JComboBox bedbox) {
+		RegisterPropertyGUI.bedbox = bedbox;
 	}
 
-	public static String[] getBath() {
-		return bath;
+	public static JComboBox getBathbox() {
+		return bathbox;
 	}
 
-	public static void setBath(String[] bath) {
-		RegisterPropertyGUI.bath = bath;
+	public static void setBathbox(JComboBox bathbox) {
+		RegisterPropertyGUI.bathbox = bathbox;
 	}
+
+	public static JComboBox getAreafield() {
+		return areafield;
+	}
+
+	public static void setAreafield(JComboBox areafield) {
+		RegisterPropertyGUI.areafield = areafield;
+	}
+	
 
 }
