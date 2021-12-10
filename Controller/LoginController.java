@@ -36,7 +36,3 @@ public class LoginController extends DBInterfaceController{
     }
 }
 
-/*
-Need error handling when password or username is incorrect
-*/
-
