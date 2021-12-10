@@ -28,7 +28,7 @@ public class LoginAccountGUI {
 	public LoginAccountGUI() {
 
 		JFrame frame = new JFrame();
-		frame.setSize(400, 300);
+		frame.setSize(400, 350);
 		frame.setTitle("Welcome to RentSmarter Calgary!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -41,7 +41,7 @@ public class LoginAccountGUI {
 		loginpanel.add(usernamelabel);
 
 		usernamefield = new JTextField();
-		usernamefield.setBounds(100, 20, 160, 25);
+		usernamefield.setBounds(100, 20, 200, 25);
 		loginpanel.add(usernamefield);
 
 		passlabel = new JLabel("Password:");
@@ -49,7 +49,7 @@ public class LoginAccountGUI {
 		loginpanel.add(passlabel);
 
 		passfield = new JPasswordField();
-		passfield.setBounds(100, 50, 160, 25);
+		passfield.setBounds(100, 50, 200, 25);
 		loginpanel.add(passfield);
 
 		button = new JButton("Login");
@@ -98,11 +98,9 @@ public class LoginAccountGUI {
 			public void actionPerformed(ActionEvent c) {
 				if (usernamefield.getText().isEmpty()==true) {
 					   JOptionPane.showMessageDialog(null, "Entered username is invalid.", "Whoops", JOptionPane.ERROR_MESSAGE);
-					   frame.setVisible(true);
 				} 
 				else {
 					JOptionPane.showMessageDialog(frame, "Please check your email and follow the instructions to reset password.");
-			    	redirect.backtologin();
 				}
 			}
 		});
