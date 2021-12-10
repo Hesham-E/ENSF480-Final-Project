@@ -37,6 +37,20 @@ public class AccountServer {
         return null;
     }
 
+    public boolean registrationEmailUnique (String email) {
+        for(int i = 0; i < users.size(); i++) 
+        if(users.get(i).getEmail().equals(email) == true)
+            return false; 
+        return true;
+    }
+
+    public boolean registrationUsernameUnique (String username) {
+        for(int i = 0; i < users.size(); i++) 
+        if(users.get(i).getUsername().equals(username) == true)
+            return false; 
+        return true;
+    } 
+
     public ArrayList<User> getUsers(){
         return users;
     }
