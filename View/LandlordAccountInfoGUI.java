@@ -50,9 +50,6 @@ public class LandlordAccountInfoGUI{
         return this.propertyList;
     }
 
-    public JButton getSaveChangesButton(){
-        return SaveChangesButton;
-    }
     
     public LandlordAccountInfoGUI() {
     
