@@ -7,7 +7,6 @@ public class Manager extends Account{
     private SummaryReport report;
 
     public Manager () {
-        accountController = new ManagerAccountController();
         userInfo.setAccountType(AccountType.MANAGER);
     }
 
