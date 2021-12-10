@@ -11,5 +11,5 @@ public abstract class AccountController {//changed from interface to abstract cl
     }
 
     public abstract void performGUIStrategy ();
-    public abstract void updateDatabase ();
+    //public abstract void updateDatabase (); removed since not all children need to update database
 }

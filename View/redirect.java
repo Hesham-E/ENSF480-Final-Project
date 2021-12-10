@@ -18,8 +18,11 @@ public class redirect {
 	}
 	
 	public static void landlordinfobutton(){
-		System.out.println("in redirect");
 		new LandlordAccountInfoGUI();
+	}
+	
+	public static void managerinfobutton(){
+		new ManagerAccountInfoGUI();
 	}
 	
 	public static void gotoaddpropbutton(){
@@ -28,5 +31,9 @@ public class redirect {
 	
 	public static void gotogeneratedreport(){
 		new GeneratedReportGUI();
+	}
+
+	public static void gotosumbutton(){
+		new SummaryReportGUI();
 	}
 }

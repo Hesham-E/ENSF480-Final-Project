@@ -35,7 +35,19 @@ public class feePayment {
     	// Should it have return type Notification??
     }
 
-    public void modifyAmount(double newAmount) {
-    	this.feeAmount = newAmount;
+    public static void setAmount(double newAmount) {
+    	feeAmount = newAmount;
+    }
+
+    public static void setPeriod(Date newPeriod){
+        feePeriod = newPeriod;
+    }
+
+    public static double getAmount() {
+    	return feeAmount;
+    }
+
+    public static Date getPeriod(){
+        return feePeriod;
     }
 }

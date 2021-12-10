@@ -4,10 +4,10 @@
  */
 package Model;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class AccountServer {
-    Vector<User> users;
+    ArrayList<User> users;
     static AccountServer instance;
     private DBInterfaceController loginController;
 
@@ -22,18 +22,22 @@ public class AccountServer {
     	User x = {username, password};
     	int found = 0;
     	for(int i = 0; i < users.size(); i++) 
-            if(users.get(i).name.equals(username) == true ){ 
+            if(users.get(i).getName().equals(username) == true ){ 
                 found = 1; 
                 System.out.println("Sorry this user already exists."); 
             } 
-        if(!found) 
+        if(found == 0) 
         	users.add(x); 
     }
 
     public User validate(String username, String password) {
     	for(int i = 0; i < users.size(); i++) 
-            if(users.get(i).name.equals(username) == true && users.get(i).password.equals(password) == true)
+            if(users.get(i).getName().equals(username) == true && users.get(i).getPassword().equals(password) == true)
             	return users.get(i); 
         return null;
+    }
+
+    public ArrayList<User> getUsers(){
+        return users;
     }
 }

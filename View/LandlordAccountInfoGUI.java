@@ -17,12 +17,13 @@ public class LandlordAccountInfoGUI{
     private JTextField PasswordField;
     private JTextField NameField;
     private JTextField EmailField;
-    private JButton SaveChangesButton;
     private JButton ViewPropertiesButton;
     private JButton AddPropertyButton;
+    private JButton EditPropertyButton;
+    private JButton RemovePropertyButton;
     private JLabel NumberOfPropertiesLabel;
     private ArrayList<Property> propertyList;
-    private static JButton extrab1;
+    private static JButton logoutbutton;
 
     
     public void setGUIUsername(String username){
@@ -49,9 +50,6 @@ public class LandlordAccountInfoGUI{
         return this.propertyList;
     }
 
-    public JButton getSaveChangesButton(){
-        return SaveChangesButton;
-    }
     
     public LandlordAccountInfoGUI() {
     
@@ -65,7 +63,7 @@ public class LandlordAccountInfoGUI{
 	lpanel.setLayout(null);
 	
 	AddPropertyButton = new JButton("Register a new property!");
-	AddPropertyButton.setBounds(200,100,200,50);
+	AddPropertyButton.setBounds(100,10,200,25);
 	AddPropertyButton.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent a){
 			frame.setVisible(false);
@@ -74,7 +72,49 @@ public class LandlordAccountInfoGUI{
 	});
 	lpanel.add(AddPropertyButton);
 	frame.setVisible(true);
+	
+	EditPropertyButton = new JButton("Edit existing property");
+	EditPropertyButton.setBounds(100, 40, 200, 25);
+	EditPropertyButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent b) {
+			frame.setVisible(false);
+			redirect.backtologin();
+			}
+		}
+	);
+	lpanel.add(EditPropertyButton);
+	
+	RemovePropertyButton = new JButton("Remove existing property");
+	RemovePropertyButton.setBounds(100, 70, 200, 25);
+	RemovePropertyButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent b) {
+			frame.setVisible(false);
+			//property removal code needed
+			}
+		}
+	);
+	lpanel.add(RemovePropertyButton);
     
+	logoutbutton = new JButton("View Listed Properties");
+	logoutbutton.setBounds(100, 100, 200, 25);
+	logoutbutton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent b) {
+			frame.setVisible(false);
+			
+			}
+		}
+	);
+	
+	logoutbutton = new JButton("Logout");
+	logoutbutton.setBounds(100, 150, 200, 25);
+	logoutbutton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent b) {
+			frame.setVisible(false);
+			redirect.backtologin();
+			}
+		}
+	);
+	lpanel.add(logoutbutton);
 }
     
 }

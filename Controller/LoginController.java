@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.AccountServer;
+import Model.User;
 import View.LoginAccountGUI;
 import java.awt.event.*;
 
@@ -23,6 +24,11 @@ public class LoginController extends DBInterfaceController{
 
     public void validate (String username, String password) {
         instance.validate(username, password);
+    }
+
+    public String getDatabaseAccountType(){
+        User user = database.getAccountInfo(theView.getGUIUsername());
+        return user.getAccountType().toString();
     }
 }
 
