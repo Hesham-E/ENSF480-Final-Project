@@ -115,16 +115,17 @@ public class SearchGUI {
 		bookmarkbutton.setBounds(10, 200, 150, 110);
 		bookmarkbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//            	if(user is Registered renter) {
+          	if(LoginAccountGUI.accountType.equals("REGISTEREDRENTER")){
 				frame.setVisible(false);
 				JOptionPane.showMessageDialog(frame, "Subscription Saved!");
 			}
-//          }
-//            else {
-//            	frame.setVisible(false);
-//            	JOptionPane.showMessageDialog(null, "You must Login as Registered Renter to use this feature. Kindly Login and retry.", "Whoops", JOptionPane.ERROR_MESSAGE);
-//            	redirect.backtologin();
-//            }
+          
+            else {
+            	frame.setVisible(false);
+            	JOptionPane.showMessageDialog(null, "You must Login as Registered Renter to use this feature. Kindly Login and retry.", "Whoops", JOptionPane.ERROR_MESSAGE);
+            	redirect.backtologin();
+            }
+		}
 		});
 		panel.add(bookmarkbutton);
 
