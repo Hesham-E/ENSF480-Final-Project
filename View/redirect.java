@@ -21,6 +21,10 @@ public class redirect {
 		new LandlordAccountInfoGUI();
 	}
 	
+	public static void managerinfobutton(){
+		new ManagerAccountInfoGUI();
+	}
+	
 	public static void gotoaddpropbutton(){
 		new RegisterPropertyGUI();
 	}
