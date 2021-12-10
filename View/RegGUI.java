@@ -30,8 +30,8 @@ public class RegGUI{
 	private static JLabel usertype;
 	private static JComboBox usertypebox;
 	static String[] userTypes = {"Landlord","Renter"};
-	public boolean uniqueemail=true;
-	public boolean uniqueusername=true;
+	private boolean uniqueemail;
+	private boolean uniqueusername;
 	
 	public RegGUI() {
 		JFrame regframe = new JFrame();
@@ -170,6 +170,22 @@ public class RegGUI{
 
 	public static void setUserTypes(String[] userTypes) {
 		RegGUI.userTypes = userTypes;
+	}
+
+	public boolean getUniqueemail() {
+		return this.uniqueemail;
+	}
+
+	public void setUniqueemail(boolean uniqueemail) {
+		this.uniqueemail = uniqueemail;
+	}
+
+	public boolean getUniqueUsername() {
+		return this.uniqueusername;
+	}
+
+	public void setUniqueUsername(boolean uniqueusername) {
+		this.uniqueusername = uniqueusername;
 	}
 	
 }

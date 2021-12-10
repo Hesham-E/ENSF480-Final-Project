@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Account;
+import Model.AccountServer;
 import Model.AccountType;
 import Model.Landlord;
 import Model.Manager;
@@ -10,6 +11,7 @@ import View.RegGUI;
 
 public class RegistrationController extends DBInterfaceController{
     private RegGUI theView;
+    private AccountServer instance;
 
     public RegistrationController (Database db, RegGUI view) {
         super(db);
@@ -18,7 +20,12 @@ public class RegistrationController extends DBInterfaceController{
         theView = view;
 
         theView.getRegButton().addActionListener (e -> {
-            createAccount(theView.getUsernamefield(), theView.getPassfield(), theView.getEmailfield(), theView.getEmailfield(), theView.getUserType());
+            validateEmail(theView.getEmailfield());
+            validateUsername(theView.getUsernamefield());
+            
+            if (theView.getUniqueUsername() && theView.getUniqueemail()) {
+                createAccount(theView.getUsernamefield(), theView.getPassfield(), theView.getEmailfield(), theView.getEmailfield(), theView.getUserType());
+            }
         });
     }
 
@@ -54,4 +61,14 @@ public class RegistrationController extends DBInterfaceController{
 
         super.addDatabaseAccount(account);
     }
+
+    public void validateEmail (String email) {
+        theView.setUniqueemail(instance.registrationEmailUnique(email));
+    }
+
+    public void validateUsername (String username) {
+        theView.setUniqueUsername(instance.registrationUsernameUnique(username));
+    }
 }
+
+
