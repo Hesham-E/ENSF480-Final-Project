@@ -57,19 +57,35 @@ public class LoginAccountGUI {
 		button.setBounds(100, 100, 200, 25);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
-				// if(account in database is of a registered renter) {
-				// redirect.rraccinfobutton();
-				// }
-				// else if(account in database is of a landlord) {
-				// redirect.landlordinfobutton();
-				// }
-				String username = usernamefield.getText();
-				String password = passfield.getText();
-				System.out.println("The username entered is " + username + " and the password entered is " + password);
-
-				frame.setVisible(false);
-
+			if(usernamefield.getText().isEmpty()==true){
+				JOptionPane.showMessageDialog(null, "Kindly enter an username.", "Whoops", JOptionPane.ERROR_MESSAGE);
+				frame.setVisible(true);
 			}
+			else if(passfield.getPassword().length== 0){
+				JOptionPane.showMessageDialog(null, "Password cannot be empty.", "Whoops", JOptionPane.ERROR_MESSAGE);
+				frame.setVisible(true);
+			}
+			else {
+//				if(username and password match in database){
+//				if(account in database is of a registered renter) {
+//				 redirect.rraccinfobutton();
+//				 }
+//				else if(account in database is of a landlord) {
+//				 redirect.landlordinfobutton();
+//				 }
+//				else if(account in database is of a manager) {
+//					 redirect.landlordinfobutton();
+//					 }
+//		     	}
+//				else{
+//					JOptionPane.showMessageDialog(null, "Entered credentionals are invalid.", "Whoops", JOptionPane.ERROR_MESSAGE);
+//					frame.setVisible(true);
+//				//the next two lines will be commented once lines 69-82 are commented out after completion 
+				System.out.println("Account Valid.");
+				frame.setVisible(false);
+				}
+			}
+			
 		});
 		loginpanel.add(button);
 
@@ -144,10 +160,6 @@ public class LoginAccountGUI {
 
 		frame.setVisible(true);
 	}
-
-
-
-
 
 	public static JTextField getUsernamefield() {
 		return usernamefield;

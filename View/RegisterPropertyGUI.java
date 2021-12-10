@@ -19,6 +19,8 @@ public class RegisterPropertyGUI{
 	private static JComboBox areafield;
 	private static JLabel typelabel;
 	private static JComboBox typebox;
+	private static JLabel furnishlabel;
+	private static JComboBox furnishbox;
 	private static JLabel bedlabel;
 	private static JComboBox bedbox;
 	private static JLabel bathlabel;
@@ -35,6 +37,7 @@ public class RegisterPropertyGUI{
 	static String[] bed = {"Studio","1 Bed","1 + Den","2 Bed","2 + Den",
 			                   "3 Bed", "3 + Den","4+ Bed"};
 	static String[] bath = {"1 Bath","1.5 Bath","2 Bath","2.5 Bath","3+ Bath"};
+	static String[] options = {"Yes","No"};
 	
 	public RegisterPropertyGUI(){
 		JFrame frame = new JFrame();
@@ -83,20 +86,28 @@ public class RegisterPropertyGUI{
         bathbox.setBounds(200, 113, 160, 25);
         hregisterpanel.add(bathbox);
         
+        furnishlabel = new JLabel("Is the house furnished?");
+        furnishlabel.setBounds(10,140,200,25);
+		hregisterpanel.add(furnishlabel);
+        
+		furnishbox = new JComboBox(options);
+		furnishbox.setBounds(200, 142, 160, 25);
+        hregisterpanel.add(furnishbox);
+        
         yearlabel = new JLabel("Year Built:");
-		yearlabel.setBounds(10,140,200,30);
+		yearlabel.setBounds(10,170,200,30);
 		hregisterpanel.add(yearlabel);
 		
 		yearfield = new JTextField();
-	    yearfield.setBounds(200,143,160,25);
+	    yearfield.setBounds(200,171,160,25);
 		hregisterpanel.add(yearfield);
 		
 		pricelabel = new JLabel("Asking Price:");
-		pricelabel.setBounds(10,170,200,30);
+		pricelabel.setBounds(10,200,200,30);
 		hregisterpanel.add(pricelabel);
 			
 		pricefield = new JTextField("$");
-		pricefield.setBounds(200,173,160,25);
+		pricefield.setBounds(200,200,160,25);
 	 	hregisterpanel.add(pricefield);
 	
 		regbutton = new JButton("Register property");
@@ -139,6 +150,14 @@ public class RegisterPropertyGUI{
 		
 		
 		frame.setVisible(true);
+	}
+
+	public static JComboBox getFurnishbox() {
+		return furnishbox;
+	}
+
+	public static void setFurnishbox(JComboBox furnishbox) {
+		RegisterPropertyGUI.furnishbox = furnishbox;
 	}
 
 	public static JTextField getLocfield() {
