@@ -25,4 +25,8 @@ public class redirect {
 	public static void gotoaddpropbutton(){
 		new RegisterPropertyGUI();
 	}
+	
+	public static void gotogeneratedreport(){
+		new GeneratedReportGUI();
+	}
 }

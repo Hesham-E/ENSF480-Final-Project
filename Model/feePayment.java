@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
 
@@ -22,15 +23,16 @@ public class feePayment {
     public void periodEnded() { // I think this should be implemented somewhere else but let's leave it here for now
     	Date currDate = new Date();
         
-        if(currDate.getTime() = feePeriod.getTime()) {
+        if(currDate.getTime() == feePeriod.getTime()) {
         	getNotified();
         	this.paid = false;
         }
     }
 
-    public Notifications getNotified() { // Notifications does not exist on diagram
+    public void getNotified() { // Notifications does not exist on diagram
     	System.out.println("Payment Period Ended!");
     	// Print that they have to renew it?? nothing else?
+    	// Should it have return type Notification??
     }
 
     public void modifyAmount(double newAmount) {
