@@ -21,18 +21,21 @@ public class LoginController extends DBInterfaceController{
         });      
     }
 
+    //Validates username and password
     public void validate (String username, String password) {
         if (instance.validate(username, password) == null) {
             theView.setLoginValid(false);
         }
         else {
+            setGUIAccountType(username);
             theView.setLoginValid(true);
         }
     }
 
-    public String getDatabaseAccountType(){
-        User user = database.getAccountInfo(theView.getUsernamefield().toString());
-        return user.getAccountType().toString();
+    //Sets Account type in the view
+    public void setGUIAccountType(String username){
+        User user = database.getAccountInfo(username);
+        theView.setGUIAccountType(user.getAccountType().toString());
     }
 }
 

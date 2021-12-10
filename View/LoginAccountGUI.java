@@ -26,6 +26,7 @@ public class LoginAccountGUI {
 	private static JButton extrab2;
 	private static JButton extrab3;
 	private static boolean loginValid;
+	private String accountType;
 
 
 
@@ -60,33 +61,38 @@ public class LoginAccountGUI {
 		button.setBounds(100, 100, 200, 25);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
+
+			//If username not entered show error message
 			if(usernamefield.getText().isEmpty()==true){
 				JOptionPane.showMessageDialog(null, "Kindly enter an username.", "Whoops", JOptionPane.ERROR_MESSAGE);
 				frame.setVisible(true);
 			}
+			//If pasword not entered show error message
 			else if(passfield.getPassword().length== 0){
 				JOptionPane.showMessageDialog(null, "Password cannot be empty.", "Whoops", JOptionPane.ERROR_MESSAGE);
 				frame.setVisible(true);
 			}
+			//If account doesn't exist show error message 
 			else if (loginValid == false) {
 				JOptionPane.showMessageDialog(null, "Account does not exist in database", "Whoops", JOptionPane.ERROR_MESSAGE);
 				frame.setVisible(true);
 			}
+			//If account is validated redirect to appropriate page based on account type
 			else {
-//				if(username and password match in database){
-//				if(account in database is of a registered renter) {
-//				 redirect.rraccinfobutton();
-//				 }
-//				else if(account in database is of a landlord) {
-//				 redirect.landlordinfobutton();
-//				 }
-//				else if(account in database is of a manager) {
-//					 redirect.landlordinfobutton();
-//					 }
-//		     	}
-//				else{
-//					JOptionPane.showMessageDialog(null, "Entered credentionals are invalid.", "Whoops", JOptionPane.ERROR_MESSAGE);
-//					frame.setVisible(true);
+				if(accountType.equals("REGISTEREDRENTER")){
+					redirect.rraccinfobutton();
+				}
+				else if(accountType.equals("LANDLORD")){
+					redirect.landlordinfobutton();
+				}
+				else if(accountType.equals("MANAGER")){
+					redirect.managerinfobutton();
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Entered credentionals are invalid.", "Whoops", JOptionPane.ERROR_MESSAGE);
+					frame.setVisible(true);
+				}
+
 //				//the next two lines will be commented once lines 69-82 are commented out after completion 
 				System.out.println("Account Valid.");
 				frame.setVisible(false);
@@ -194,5 +200,9 @@ public class LoginAccountGUI {
 
 	public void setLoginValid(boolean validity) {
 		loginValid = validity;
+	}
+
+	public void setGUIAccountType(String type){
+		this.accountType = type;
 	}
 }
