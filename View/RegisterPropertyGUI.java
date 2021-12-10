@@ -31,9 +31,9 @@ public class RegisterPropertyGUI {
 	private static JButton regbutton;
 	private static JButton cancelbutton;
 	static String[] htypes = { "Apartment", "Duplex", "Condo", "Basement", "Loft", "House", "Townhouse", "Shared" };
-	static String[] area = { "NW", "SW", "NE", "SE", "Central" };
-	static String[] bed = {"1", "2", "3", "4"};
-	static String[] bath = {"1", "2", "3", "4"};
+	static String[] area = { "NW", "SW", "NE", "SE" };
+	static int[] bed = { 1, 2,3,4,5 };
+	static int[] bath = { 1, 2,3 };
 	static String[] options = { "Yes", "No" };
 	boolean flag = true;
 
@@ -187,73 +187,64 @@ public class RegisterPropertyGUI {
 		frame.setVisible(true);
 	}
 
-	public static JButton getRegButton () {
-		return regbutton;
-	}
-
-	public static boolean getFurnishbox() {
-		if (furnishbox.getSelectedItem().toString().equals("Yes")) {
-			return true;
-		}
-		else {
-			return false;
-		}
+	public static JComboBox getFurnishbox() {
+		return furnishbox;
 	}
 
 	public static void setFurnishbox(JComboBox furnishbox) {
 		RegisterPropertyGUI.furnishbox = furnishbox;
 	}
 
-	public static String getLocfield() {
-		return locfield.getText();
+	public static JTextField getLocfield() {
+		return locfield;
 	}
 
 	public static void setLocfield(JTextField locfield) {
 		RegisterPropertyGUI.locfield = locfield;
 	}
 
-	public static String getYearfield() {
-		return yearfield.getText();
+	public static JTextField getYearfield() {
+		return yearfield;
 	}
 
 	public static void setYearfield(JTextField yearfield) {
 		RegisterPropertyGUI.yearfield = yearfield;
 	}
 
-	public static double getPricefield() {
-		return Double.parseDouble(pricefield.getText());
+	public static JTextField getPricefield() {
+		return pricefield;
 	}
 
 	public static void setPricefield(JTextField pricefield) {
 		RegisterPropertyGUI.pricefield = pricefield;
 	}
 
-	public static String getTypebox() {
-		return typebox.getSelectedItem().toString();
+	public static JComboBox getTypebox() {
+		return typebox;
 	}
 
 	public static void setTypebox(JComboBox typebox) {
 		RegisterPropertyGUI.typebox = typebox;
 	}
 
-	public static int getBedbox() {
-		return Integer.parseInt(bedbox.getSelectedItem().toString());
+	public static JComboBox getBedbox() {
+		return bedbox;
 	}
 
 	public static void setBedbox(JComboBox bedbox) {
 		RegisterPropertyGUI.bedbox = bedbox;
 	}
 
-	public static int getBathbox() {
-		return Integer.parseInt(bathbox.getSelectedItem().toString());
+	public static JComboBox getBathbox() {
+		return bathbox;
 	}
 
 	public static void setBathbox(JComboBox bathbox) {
 		RegisterPropertyGUI.bathbox = bathbox;
 	}
 
-	public static String getAreafield() {
-		return areafield.getSelectedItem().toString();
+	public static JComboBox getAreafield() {
+		return areafield;
 	}
 
 	public static void setAreafield(JComboBox areafield) {
