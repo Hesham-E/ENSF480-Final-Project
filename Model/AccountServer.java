@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class AccountServer {
     ArrayList<User> users;
     static AccountServer instance;
-    private DBInterfaceController loginController;
+    //private DBInterfaceController loginController; removed
 
     static public AccountServer getInstance() {
     	if(instance == null) 
