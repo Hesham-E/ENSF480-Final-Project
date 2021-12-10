@@ -9,46 +9,31 @@ import javax.swing.*;
 
 
 public class RegRenterAccountInfoGUI{
-    private JLabel LandlordNameLabel;
-    private JLabel LandlordUsernameLabel;
-    private JLabel LandlordEmailLabel;
-    private JLabel LandlordAccountTypeLabel;
+    private JLabel RenterNameLabel;
+    private JLabel RenterUsernameLabel;
+    private JLabel RenterEmailLabel;
     private JTextField UserNameField;
     private JTextField PasswordField;
     private JTextField NameField;
     private JTextField EmailField;
-    private JButton ViewPropertiesButton;
     private JButton SearchPropertyButton;
     private JButton EditPropertyButton;
     private JButton RemovePropertyButton;
-    private JLabel NumberOfPropertiesLabel;
-    private ArrayList<Property> propertyList;
     private static JButton logoutbutton;
 
     
     public void setGUIUsername(String username){
-        LandlordUsernameLabel.setText("Username: " + username);
+        RenterNameLabel.setText("Username: " + username);
     }
 
     public void setGUIName(String name){
-        LandlordNameLabel.setText("Name: " + name);
+        RenterNameLabel.setText("Name: " + name);
     }
 
     public void setGUIEmail(String email){
-        LandlordEmailLabel.setText("Email: " + email);
+        RenterEmailLabel.setText("Email: " + email);
     }
 
-    public void setGUIAccountType(String type){
-        LandlordAccountTypeLabel.setText("Account Type: " + type);
-    }
-
-    public void setGUIProperties(ArrayList<Property> list){
-        this.propertyList = list;
-    }
-
-    public ArrayList<Property> getGUIProperties(){
-        return this.propertyList;
-    }
 
     
     public RegRenterAccountInfoGUI() {
@@ -118,3 +103,4 @@ public class RegRenterAccountInfoGUI{
 }
     
 }
+
