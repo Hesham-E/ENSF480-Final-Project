@@ -136,32 +136,36 @@ public class RegGUI{
 		regframe.setVisible(true);
 	}
 
-	public static JTextField getEmailfield() {
-		return emailfield;
+	public JButton getRegButton () {
+		return regbutton;
+	}
+
+	public static String getEmailfield() {
+		return emailfield.getText();
 	}
 
 	public static void setEmailfield(JTextField emailfield) {
 		RegGUI.emailfield = emailfield;
 	}
 
-	public static JTextField getUsernamefield() {
-		return usernamefield;
+	public static String getUsernamefield() {
+		return usernamefield.getText();
 	}
 
 	public static void setUsernamefield(JTextField usernamefield) {
 		RegGUI.usernamefield = usernamefield;
 	}
 
-	public static JPasswordField getPassfield() {
-		return passfield;
+	public static String getPassfield() {
+		return passfield.getText();
 	}
 
 	public static void setPassfield(JPasswordField passfield) {
 		RegGUI.passfield = passfield;
 	}
 
-	public static String[] getUserTypes() {
-		return userTypes;
+	public static String getUserType() {
+		return usertypebox.getSelectedItem().toString();
 	}
 
 	public static void setUserTypes(String[] userTypes) {
