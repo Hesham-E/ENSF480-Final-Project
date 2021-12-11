@@ -10,7 +10,8 @@ public class SearchController extends DBInterfaceController{
         super(db);
         database.initializeConnection();
     }
-
+    //Filters the property catalog based on attributes
+    //returns an array list of similar properties
     public ArrayList<Property> filterCatalog (String type, int bedroomNo, int bathroomNo, String cityQuad, boolean furnished) {
         ArrayList<Property> catalog = database.getPropertyList();
         ArrayList<Property> similarProperties = new ArrayList<Property>();
@@ -70,12 +71,15 @@ public class SearchController extends DBInterfaceController{
         return filterCatalog(TypeOption, bedRoomNo, bathroomNo, AreaOption, furnished);
     }
 
+    //Updates catalog member from database
+    //returns catalog memeber after the update
     public PropertyCatalog fetchPropertyCatalog () {
         PropertyCatalog catalog = new PropertyCatalog();
         catalog.setCatalog(database.getPropertyList());
         return catalog;
     }
 
+    //If there was an email system, a renter would be able to invoke this method to email a landlord based on their search of a specific property
     public String emailLandLord (Property property) {
         System.out.println("Email sent successfully");
         return ("Emailed sent successfully");

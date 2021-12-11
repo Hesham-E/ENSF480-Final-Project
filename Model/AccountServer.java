@@ -13,6 +13,7 @@ public class AccountServer {
     static AccountServer instance;
     //private DBInterfaceController loginController; removed
 
+    //Returns singleton instance of account server and updates users array
     static public AccountServer getInstance() {
     	if(instance == null) 
             instance = new AccountServer(); 
@@ -23,6 +24,7 @@ public class AccountServer {
         return instance; 
     }
 
+    //Adds ONLY unique users to the array
     public void add(String username, String password, String name, String email, String accountType) {
     	User x = new User(username, password, name, email, accountType);
     	int found = 0;
@@ -35,6 +37,7 @@ public class AccountServer {
         	users.add(x); 
     }
 
+    //Validates a username and password in the database
     public User validate(String username, String password) {
         System.out.println("Checking username: " + username);
         System.out.println("Checking password: " + password);
@@ -57,6 +60,7 @@ public class AccountServer {
         return null;
     }
 
+    //Checks if an email used in registration does not previously exist in the database
     public boolean registrationEmailUnique (String email) {
         for(int i = 0; i < users.size(); i++) 
         if(users.get(i).getEmail().equals(email) == true)
@@ -64,6 +68,7 @@ public class AccountServer {
         return true;
     }
 
+     //Checks if an username used in registration does not previously exist in the database
     public boolean registrationUsernameUnique (String username) {
         for(int i = 0; i < users.size(); i++) 
         if(users.get(i).getUsername().equals(username) == true)

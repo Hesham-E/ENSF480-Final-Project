@@ -15,6 +15,7 @@ public class RegisterPropertyController extends DBInterfaceController{
         
         theView = view;
 
+        //Forwards text field items based on GUI to registerProperty() when "Registration" button is pressed
         theView.getRegButton().addActionListener (e -> {
             registerProperty(theView.getLocfield(), theView.getTypebox(), 
                              theView.getBedbox(), theView.getBathbox(), theView.getFurnishbox(), 
@@ -22,6 +23,7 @@ public class RegisterPropertyController extends DBInterfaceController{
         });
     }
 
+    //Registers property in database based on what is inputted on GUI
     public void registerProperty (String address, String type, int bedroomNo, int bathroomNo, boolean furnished, String cityQuad, double cost, Landlord landlord, PropertyState state) {
         regProperty = new Property();
         regProperty.setAddress(address);

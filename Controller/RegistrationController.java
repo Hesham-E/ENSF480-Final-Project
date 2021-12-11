@@ -19,6 +19,7 @@ public class RegistrationController extends DBInterfaceController{
         
         theView = view;
 
+        //Validates account information to make sure its unique and adds account into database
         theView.getRegButton().addActionListener (e -> {
             validateEmail(theView.getEmailfield());
             validateUsername(theView.getUsernamefield());
@@ -29,7 +30,7 @@ public class RegistrationController extends DBInterfaceController{
         });
     }
 
-    //added accountType
+    //Adds account parameters into the database
     public void createAccount (String username, String password, String name, String email, String accountTypeString) {
         User userInfo = new User();
         AccountType accountType = AccountType.REGISTEREDRENTER;

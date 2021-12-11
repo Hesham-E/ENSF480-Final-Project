@@ -20,7 +20,8 @@ public class feePayment {
     	this.feePeriod = c.getTime();
     }
     
-    public void periodEnded() { // I think this should be implemented somewhere else but let's leave it here for now
+    //Updates pay status
+    public void periodEnded() {
     	Date currDate = new Date();
         
         if(currDate.getTime() == feePeriod.getTime()) {
@@ -29,10 +30,9 @@ public class feePayment {
         }
     }
 
+    //Notifies landlord their fee payment ended if there was an email system implemented
     public void getNotified() { // Notifications does not exist on diagram
     	System.out.println("Payment Period Ended!");
-    	// Print that they have to renew it?? nothing else?
-    	// Should it have return type Notification??
     }
 
     public static void setAmount(double newAmount) {

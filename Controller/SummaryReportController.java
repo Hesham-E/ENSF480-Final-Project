@@ -20,6 +20,8 @@ public class SummaryReportController extends DBInterfaceController{
         updateReport();
     }
 
+    //Invokes Model.SummaryReport to generate report based on information SummaryReportController provides to it from the database
+    //Then, SummaryReportController forwards the report's information to the GUI
     public void updateReport () {
         model.setCatalog(database.getPropertyList());
         model.setTimePeriod(intialView.getGUITimePeriod());

@@ -71,4 +71,4 @@ public class GeneratedReportGUI {
 		reportPanel.add(count);
         frame.setVisible(true);
     }
-} //unsure
+}

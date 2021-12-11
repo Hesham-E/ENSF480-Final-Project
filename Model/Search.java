@@ -3,6 +3,8 @@ import Controller.SearchController;
 
 import java.util.ArrayList;
 
+//Data representation of a Search
+//Has no function by its lonesome
 public class Search implements Observer{
     //Everything except subject and searchController used to be ArrayLists
     private Subject subject;
@@ -26,6 +28,7 @@ public class Search implements Observer{
 
     }
 
+    //GETTERS AND SETTERS HERE
     public void setSubject(Subject s) {
         subject = s;
         subject.registerObserver(this);
@@ -70,9 +73,12 @@ public class Search implements Observer{
     public void removeCityQuad() {
         cityQuad = "";
     }
+    //GETTERS AND SETTERS END
     
     //REMOVED  getSubscribed and added it to RegRenter as method "subscribeToSearch"
 
+    //If an email system was implemented, this would be used to notify the renter of 
+    //any changes to their subscription
     public void getNotifiedByEmail() {
         System.out.println("Subscribers notified by email!");
     }
