@@ -1,21 +1,5 @@
 package Controller;
 
-<<<<<<< HEAD
-import Model.Manager;
-import View.ManagerAccountInfoGUI;
-
-public class ManagerAccountController extends AccountController {
-
-    private Manager theModel;
-    private ManagerAccountInfoGUI theView;
-
-    ManagerAccountController(Manager model, ManagerAccountInfoGUI view, Database db){
-        super(db);
-        theModel = model;
-        theView = view;
-    }
-
-=======
 import Model.AccountServer;
 import Model.AccountType;
 import Model.Manager;
@@ -51,7 +35,6 @@ public class ManagerAccountController extends AccountController {
     }
 
     //Sets the values to be shown for Manager account info
->>>>>>> main
     public void performGUIStrategy () {
         //Set general account info that will be displayed
         theView.setGUIUsername(theModel.getUserInfo().getUsername());
