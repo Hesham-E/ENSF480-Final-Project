@@ -6,15 +6,20 @@ package Model;
 
 import java.util.ArrayList;
 
+import Controller.Database;
+
 public class AccountServer {
-    ArrayList<User> users;
+    static ArrayList<User> users;
     static AccountServer instance;
     //private DBInterfaceController loginController; removed
 
     static public AccountServer getInstance() {
     	if(instance == null) 
             instance = new AccountServer(); 
-         
+
+        Database db = new Database();
+        db.initializeConnection();
+        users = db.getUserList();
         return instance; 
     }
 
@@ -32,7 +37,7 @@ public class AccountServer {
 
     public User validate(String username, String password) {
     	for(int i = 0; i < users.size(); i++) 
-            if(users.get(i).getName().equals(username) == true && users.get(i).getPassword().equals(password) == true)
+            if(users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password))
             	return users.get(i); 
         return null;
     }

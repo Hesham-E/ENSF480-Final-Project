@@ -3,6 +3,8 @@ package Controller;
 import Model.AccountServer;
 import Model.User;
 import View.LoginAccountGUI;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginController extends DBInterfaceController{
     private AccountServer instance;

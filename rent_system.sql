@@ -78,3 +78,18 @@ VALUES
 (1, 'jamal.c@gmail.com',	'Hello, I am interested in renting the condo at 459 Button Blvd SE. Please email me back at jaredf@yahoo.com'),
 (2, 'jamal.c@gmail.com',	'Hey, I am interested in renting the condo at 459 Button Blvd SE. Please email me back at lucyj@yahoo.com');
 
+DROP TABLE IF EXISTS SUBSCRIBE;
+CREATE TABLE SUBSCRIBE (
+	RenterEmail		        varchar(320),
+    Type					varchar(25),
+    BedroomNo				integer,
+    BathroomNo				integer,
+    Furnished				varchar(25),
+    CityQuad				char(2),
+    primary key(RenterEmail)
+);
+
+INSERT INTO SUBSCRIBE (RenterEmail, Type, BedroomNo, BathroomNo, Furnished, CityQuad)
+VALUES
+('thomas.r@gmail.com', 'Condo', 2, 1, false, 'NW');
+

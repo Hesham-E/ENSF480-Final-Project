@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import Model.*;
 
 public class Database {
-    public final String DBURL = "jdbc:mysql://localhost/rent_system";
-    public final String USERNAME = "alliana";
-    public final String PASSWORD = "ensf409";
+    public final String DBURL = "jdbc:mysql://localhost:3306/rent_system";
+    public final String USERNAME = "root";
+    public final String PASSWORD = "1234";
     private Connection connect;
 
     public void initializeConnection () {
@@ -34,6 +34,29 @@ public class Database {
             myStmt.setString(3, account.getUserInfo().getUsername());
             myStmt.setString(4, account.getUserInfo().getPassword());
             myStmt.setString(5, account.getUserInfo().getAccountType().toString());
+
+            myStmt.execute();
+            myStmt.close();
+        } 
+
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }  
+    }
+
+    public void addSubscribe(String email, String type, int bedroom, int bath, String area, boolean furn){
+        try {                    
+
+            String query = "INSERT INTO subscribe (RenterEmail, Type, BedroomNo, BathroomNo, Furnished, CityQuad)"
+            + " VALUES(?, ?, ?, ?, ?, ?)";
+            PreparedStatement myStmt = this.connect.prepareStatement(query);
+
+            myStmt.setString(1, email);
+            myStmt.setString(2, type);
+            myStmt.setString(3, bedroom);
+            myStmt.setString(4, bath);
+            myStmt.setString(5, furn);
+            myStmt.setString(6, area);
 
             myStmt.execute();
             myStmt.close();
@@ -240,6 +263,36 @@ public class Database {
         }   
         return propertyList;
    }
+
+       //Retrieves list of properties and their info from the database
+       public  ArrayList<User> getUserList () {
+        ArrayList<User> userList = new ArrayList<User>();
+        try {                    
+            Statement myStmt = this.connect.createStatement();
+            ResultSet results;
+            results = myStmt.executeQuery("SELECT * FROM accounts");
+
+            //Populate userList with all properties and their info stored in the database
+            while (results.next()){
+                User u = new User();
+                u.setAccountType(results.getString("AccountType"));
+                u.setEmail(results.getString("Email"));
+                u.setName(results.getString("Name"));
+                u.setPassword(results.getString("Password"));
+                u.setUsername(results.getString("Username"));
+
+                userList.add(u);
+            }
+        myStmt.close();
+        } 
+        
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }   
+        return userList;
+   }
+
+   
     
     //Adds message from renter to landlord to the database 
     public void updateMessage (String message, Property property) { //Send message to property's landlord's email

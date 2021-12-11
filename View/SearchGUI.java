@@ -1,6 +1,8 @@
 package View;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
+
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -40,7 +42,9 @@ public class SearchGUI {
 	private String subscriber;
 
 	public SearchGUI(String emailAddress) {
-		controller = new SearchController(new Database());
+		Database db = new Database();
+		db.initializeConnection();
+		controller = new SearchController(db);
 //created a search frame 
 		this.subscriber  = emailAddress;
 
@@ -131,7 +135,16 @@ public class SearchGUI {
 		bookmarkbutton.setBounds(10, 200, 150, 110);
 		bookmarkbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
           	if(!subscriber.equals(null)){
+
+				String htype = typebox.getSelectedItem().toString();
+				String bed = bedbox.getSelectedItem().toString();
+				String bath = bathbox.getSelectedItem().toString();
+				String area = areabox.getSelectedItem().toString();
+				String furn = furnbox.getSelectedItem().toString();
+				controller.SubscribeFilter(subscriber, htype, bed, bath, area, furn);
+
 				frame.setVisible(false);
 				JOptionPane.showMessageDialog(frame, "Subscription Saved!");
 			}

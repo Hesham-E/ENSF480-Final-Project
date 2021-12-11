@@ -6,6 +6,7 @@ public abstract class AccountController {//changed from interface to abstract cl
 
     AccountController(Database db){
         this.database = db;
+        db.initializeConnection();
     }
 
     public abstract void performGUIStrategy ();

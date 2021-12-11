@@ -48,4 +48,8 @@ public abstract class DBInterfaceController {//changed from interface to abstrac
         database.updateMessage(message, property);
     }
 
+    public void addDatabaseSubscription(String email, String type, int bedroom, int bath, String area, boolean furn){
+        database.addSubscribe(email, type, bedroom, bath, area, furn);
+    }
+
 }

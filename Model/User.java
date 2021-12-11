@@ -60,4 +60,14 @@ public class User {
         this.accountType = accountType;
     }
 
+    public void setAccountType (String accountType) {
+        if (accountType.equals("RegRenter"))
+            this.accountType = AccountType.REGISTEREDRENTER;
+        else if (accountType.equals("Landlord"))
+            this.accountType = AccountType.LANDLORD;
+        else if (accountType.equals("Manager"))
+            this.accountType = AccountType.MANAGER;
+
+    }
+
 }
