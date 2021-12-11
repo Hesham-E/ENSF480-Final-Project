@@ -13,8 +13,8 @@ public class redirect {
 	}
 	
 	//this is responsible for redirecting it to SearchGUI.java class
-	public static void gotosearchbutton(){
-		new SearchGUI();
+	public static void gotosearchbutton(String email){
+		new SearchGUI(email);
 	}
 	
 	//this is responsible for redirecting it to RegRenterAccountInfoGUI.java class

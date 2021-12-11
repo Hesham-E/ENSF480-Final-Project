@@ -37,7 +37,7 @@ public class SearchController extends DBInterfaceController{
         return similarProperties;
     }
     
-    public ArrayList<Property> filterInputs (String TypeOption, String bedRoomOption, String bathOption, String AreaOption, String FurnOption)
+    public static ArrayList<Property> filterInputs (String TypeOption, String bedRoomOption, String BathOption, String AreaOption, String FurnOption)
     {
         int bedRoomNo = 0;
         if (bedRoomOption.equals("No preference")) {
