@@ -204,7 +204,7 @@ public class Database {
         try {                    
             Statement myStmt = this.connect.createStatement();
             ResultSet results;
-            results = myStmt.executeQuery("SELECT * FROM accounts");
+            results = myStmt.executeQuery("SELECT * FROM property");
 
             //Populate propertyList with all properties and their info stored in the database
             while (results.next()){

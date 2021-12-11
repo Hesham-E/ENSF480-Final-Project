@@ -34,7 +34,10 @@ public class LoginAccountGUI {
 
 
 	public LoginAccountGUI() {
-		// LoginController controller = new LoginController(new Database(), this);
+		Database db = new Database();
+		db.initializeConnection();
+		LoginController controller = new LoginController(db, this);
+		
 		JFrame frame = new JFrame();
 		frame.setSize(400, 350);
 		frame.setTitle("Welcome to RentSmarter Calgary!");
