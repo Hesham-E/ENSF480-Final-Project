@@ -77,6 +77,34 @@ public class SearchController extends DBInterfaceController{
         return ("Emailed sent successfully");
     }
     
+    public void SubscribeFilter(String email, String TypeOption, String bedRoomOption, String bathOption, String AreaOption, String FurnOption)
+    {
+        int bedRoomNo = 0;
+        if (bedRoomOption.equals("No preference")) {
+            bedRoomNo = null;
+        }
+        else {
+            bedRoomNo = Integer.parseInt(bedRoomOption);
+        }
+        
+        int bathroomNo = 0;
+        if (bathOption.equals("No preference")) {
+        	bathroomNo = null;
+        }
+        else {
+        	bathroomNo = Integer.parseInt(bathOption);
+        }
+        
+        boolean furnished;
+        if (FurnOption.equals("Yes")) {
+        	furnished = true;
+        }
+        else {
+        	furnished = false;
+        }
+
+        database.addSubscribe(email, TypeOption, bedRoomNo, bathroomNo, AreaOption, furnished);
+    }
     
     
 }

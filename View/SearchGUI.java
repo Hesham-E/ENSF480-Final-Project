@@ -132,6 +132,12 @@ public class SearchGUI {
 		bookmarkbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
           	if(LoginAccountGUI.accountType.equals("REGISTEREDRENTER")){
+				String htype = typebox.getSelectedItem().toString();
+				String bed = bedbox.getSelectedItem().toString();
+				String bath = bathbox.getSelectedItem().toString();
+				String area = areabox.getSelectedItem().toString();
+				String furn = furnbox.getSelectedItem().toString();
+				controller.SubscribeFilter(subscriber, htype, bed, bath, area, furn);
 				frame.setVisible(false);
 				JOptionPane.showMessageDialog(frame, "Subscription Saved!");
 			}
