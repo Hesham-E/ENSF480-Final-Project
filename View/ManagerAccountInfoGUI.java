@@ -168,6 +168,7 @@ public class ManagerAccountInfoGUI{
 		}
 	);
 	lpanel.add(logoutbutton);
+	frame.setVisible(true);
 }
 
 
