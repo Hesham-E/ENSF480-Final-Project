@@ -3,21 +3,25 @@ package Controller;
 import Model.AccountServer;
 import Model.User;
 import View.LoginAccountGUI;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginController extends DBInterfaceController{
     private AccountServer instance;
     private LoginAccountGUI theView;
 
-    LoginController(Database db, LoginAccountGUI view){
+    public LoginController(Database db, LoginAccountGUI view){
         super(db);
         this.instance = AccountServer.getInstance();
         this.theView = view;
 
         //When "Login" button is pressed, validate username and password
-        theView.getLoginButton().addActionListener (e -> {
+        theView.getLoginButton().addActionListener (new ActionListener() {
+            public void actionPerformed (ActionEvent a) {
             String username = theView.getUsernamefield().toString();
             String password = theView.getPassfield().toString();
             validate(username, password);
+            }
         });      
     }
 
