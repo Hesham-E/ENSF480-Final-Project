@@ -18,6 +18,7 @@ public class ManagerAccountController extends AccountController {
 
     ManagerAccountController(Manager model, ManagerAccountInfoGUI view, Database db){
         super(db);
+        database.initializeConnection();
         this.theModel = model;
         this.theView = view;
 

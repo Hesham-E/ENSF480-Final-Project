@@ -2,6 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
+import javax.xml.crypto.Data;
+
 import Controller.Database;
 import Controller.SearchController;
 
@@ -15,7 +17,9 @@ public class RegRenter extends Account{
     
     //NOT ON UML
     public ArrayList<Property> performSearch (String type, int bedroomNo, int bathroomNo, boolean furnished, String cityQuad) {
-        SearchController DBInterface = new SearchController(new Database());
+        Database db = new Database();
+        db.initializeConnection();
+        SearchController DBInterface = new SearchController(db);
         ArrayList<Property> similarProperties = DBInterface.filterCatalog(type, bedroomNo, bathroomNo, cityQuad, furnished);
         return similarProperties;
     } 

@@ -13,6 +13,7 @@ public class LandlordAccountController extends AccountController {
 
     LandlordAccountController(Landlord model, LandlordAccountInfoGUI view, Database db){
         super(db);
+        database.initializeConnection();
         this.theModel = model;
         this.theView = view;
 
