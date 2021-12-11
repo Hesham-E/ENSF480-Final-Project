@@ -14,14 +14,14 @@ CREATE TABLE ACCOUNTS (
 
 INSERT INTO ACCOUNTS (Username, Password, Name, Email, AccountType)
 VALUES
-('thomasr',		'12345',	'Thomas Ross',			'thomas.r@gmail.com',	 'RegRenter'),
-('taylern',		'12345',	'Tayler Nielsen',		'tayler.n@gmail.com',	 'RegRenter'),
-('maureenr',	'12345',	'Maureen Reed',			'maureen.r@gmail.com',	 'Landlord'),
-('joannm',		'12345',	'Joann Merritt',		'joann.m@gmail.com',	 'Landlord'),
-('lucash',		'12345',	'Lucas Hughes',			'lucas.h@gmail.com',	 'Landlord'),
-('sophiav',		'12345',	'Sophia Villalobos',	'sohpia.v@gmail.com',	 'Landlord'),
-('jamalc',		'12345',	'Jamal Cope',			'jamal.c@gmail.com',	 'Landlord'),
-('aryaanr',		'12345',	'Aryaan Rhodes',		'aryaan.r@gmail.com',	 'Manager');
+('thomasr',		'12345',	'Thomas Ross',			'thomas.r@gmail.com',	 'REGISTEREDRENTER'),
+('taylern',		'12345',	'Tayler Nielsen',		'tayler.n@gmail.com',	 'REGISTEREDRENTER'),
+('maureenr',	'12345',	'Maureen Reed',			'maureen.r@gmail.com',	 'LANDLORD'),
+('joannm',		'12345',	'Joann Merritt',		'joann.m@gmail.com',	 'LANDLORD'),
+('lucash',		'12345',	'Lucas Hughes',			'lucas.h@gmail.com',	 'LANDLORD'),
+('sophiav',		'12345',	'Sophia Villalobos',	'sohpia.v@gmail.com',	 'LANDLORD'),
+('jamalc',		'12345',	'Jamal Cope',			'jamal.c@gmail.com',	 'LANDLORD'),
+('aryaanr',		'12345',	'Aryaan Rhodes',		'aryaan.r@gmail.com',	 'MANGER');
 
 
 DROP TABLE IF EXISTS PROPERTY;

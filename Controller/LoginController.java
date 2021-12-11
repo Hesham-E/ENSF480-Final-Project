@@ -17,14 +17,17 @@ public class LoginController extends DBInterfaceController{
 
         //When "Login" button is pressed, validate username and password
         LoginAccountGUI.getLoginButton().addActionListener (e -> {
-            String username = LoginAccountGUI.getUsernamefield().toString();
-            String password = LoginAccountGUI.getPassfield().toString();
+            String username = LoginAccountGUI.getUsernamefield();
+            String password = LoginAccountGUI.getPassfield();
             validate(username, password);
         });      
     }
 
     //Validates username and password
     public void validate (String username, String password) {
+        System.out.println("Checking username from login controller: " + username);
+        System.out.println("Checking password: " + password);
+
         if (instance.validate(username, password) == null) {
             theView.setLoginValid(false);
         }

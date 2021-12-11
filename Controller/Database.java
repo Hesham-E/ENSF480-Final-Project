@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import Model.*;
 
 public class Database {
-    public final String DBURL = "jdbc:mysql://localhost:3306/rent_system";
-    public final String USERNAME = "root";
-    public final String PASSWORD = "1234";
+    public final String DBURL = "jdbc:mysql://localhost/rent_system";
+    public final String USERNAME = "alliana";
+    public final String PASSWORD = "ensf409";
     private Connection connect;
 
     public void initializeConnection () {
@@ -53,9 +53,9 @@ public class Database {
 
             myStmt.setString(1, email);
             myStmt.setString(2, type);
-            myStmt.setString(3, bedroom);
-            myStmt.setString(4, bath);
-            myStmt.setString(5, furn);
+            myStmt.setInt(3, bedroom);
+            myStmt.setInt(4, bath);
+            myStmt.setBoolean(5, furn);
             myStmt.setString(6, area);
 
             myStmt.execute();
@@ -84,7 +84,7 @@ public class Database {
                 u.setPassword(results.getString("Password"));
                 u.setName(results.getString("Name"));
                 u.setEmail(results.getString("Email"));
-                u.setAccountType(AccountType.valueOf("accountType"));
+                u.setAccountType(AccountType.valueOf(results.getString("AccountType")));
             }
         }
         myStmt.close();
@@ -227,7 +227,7 @@ public class Database {
         try {                    
             Statement myStmt = this.connect.createStatement();
             ResultSet results;
-            results = myStmt.executeQuery("SELECT * FROM accounts");
+            results = myStmt.executeQuery("SELECT * FROM property");
 
             //Populate propertyList with all properties and their info stored in the database
             while (results.next()){

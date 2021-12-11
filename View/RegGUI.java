@@ -153,7 +153,7 @@ public class RegGUI{
 	}
 
 	public static String getNamefield() {
-		return namefield.toString();
+		return namefield.getText();
 	}
 
 	public static void setNamefield(JTextField namefield) {
@@ -161,7 +161,7 @@ public class RegGUI{
 	}
 
 	public static String getEmailfield() {
-		return emailfield.toString();
+		return emailfield.getText();
 	}
 
 	public static void setEmailfield(JTextField emailfield) {
@@ -169,7 +169,7 @@ public class RegGUI{
 	}
 
 	public static String getUsernamefield() {
-		return usernamefield.toString();
+		return usernamefield.getText();
 	}
 
 	public static void setUsernamefield(JTextField usernamefield) {
@@ -177,7 +177,7 @@ public class RegGUI{
 	}
 
 	public static String getPassfield() {
-		return passfield.toString();
+		return passfield.getText();
 	}
 
 	public static void setPassfield(JPasswordField passfield) {

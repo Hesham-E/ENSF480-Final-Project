@@ -1,5 +1,6 @@
 package View;
 
+import Model.Landlord;
 import Model.Property;
 import Model.User;
 
@@ -103,7 +104,7 @@ public class ManagerAccountInfoGUI{
     public ManagerAccountInfoGUI() {
     
     JFrame frame = new JFrame();
-	frame.setSize(400, 300);
+	frame.setSize(800, 00);
 	frame.setTitle("Manager's Page!");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -121,10 +122,6 @@ public class ManagerAccountInfoGUI{
 	});
 	lpanel.add(ViewSummaryButton);
 	frame.setVisible(true);
-
-	//JScrollPane lScrollPane = new JScrollPane(landlordTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	landlordTable.setFillsViewportHeight(true);
-	lpanel.add(landlordTable);
 	
 	EditPropertyButton = new JButton("Edit existing property");
 	EditPropertyButton.setBounds(100, 40, 200, 25);
@@ -169,6 +166,19 @@ public class ManagerAccountInfoGUI{
 	);
 	lpanel.add(logoutbutton);
 	frame.setVisible(true);
+
+	//Convert 
+	Object[][] landlordInfo = new Object[1][10];
+	String[] oneLandlordinfo = new String[10];
+
+	for(int i = 0; i < landlordList.size(); i++){
+		
+	}
+
+	landlordModel = new DefaultTableModel(landlordInfo, userColumnNames);
+	//JScrollPane lScrollPane = new JScrollPane(landlordTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	landlordTable.setFillsViewportHeight(true);
+	lpanel.add(landlordTable);
 }
 
 

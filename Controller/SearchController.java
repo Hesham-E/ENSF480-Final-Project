@@ -15,6 +15,10 @@ public class SearchController extends DBInterfaceController{
         ArrayList<Property> catalog = database.getPropertyList();
         ArrayList<Property> similarProperties = new ArrayList<Property>();
         boolean isSimilar = true;
+        
+        for(int i = 0; i < catalog.size(); i++){
+            System.out.println("SearchController filter Catalog: " + catalog.get(i).getHouseid());
+        }
 
         for (Property p : catalog) {
             if (p.getFurnished() != furnished)
@@ -81,7 +85,7 @@ public class SearchController extends DBInterfaceController{
     {
         int bedRoomNo = 0;
         if (bedRoomOption.equals("No preference")) {
-            bedRoomNo = null;
+            bedRoomNo = 0;
         }
         else {
             bedRoomNo = Integer.parseInt(bedRoomOption);
@@ -89,7 +93,7 @@ public class SearchController extends DBInterfaceController{
         
         int bathroomNo = 0;
         if (bathOption.equals("No preference")) {
-        	bathroomNo = null;
+        	bathroomNo = 0;
         }
         else {
         	bathroomNo = Integer.parseInt(bathOption);

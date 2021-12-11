@@ -36,9 +36,24 @@ public class AccountServer {
     }
 
     public User validate(String username, String password) {
+        System.out.println("Checking username: " + username);
+        System.out.println("Checking password: " + password);
+        
+        for (User temp : users) {
+            System.out.println(temp.getEmail());
+        }
+
     	for(int i = 0; i < users.size(); i++) 
-            if(users.get(i).getName().equals(username) && users.get(i).getPassword().equals(password))
-            	return users.get(i); 
+            if(users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)){
+                for (User temp : users) {
+                    System.out.println(temp.getEmail());
+                    System.out.println(temp.getUsername());
+                    System.out.println(temp.getPassword());
+                    System.out.println();
+                }
+                return users.get(i); 
+            }
+            	
         return null;
     }
 

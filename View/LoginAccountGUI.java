@@ -185,16 +185,16 @@ public class LoginAccountGUI {
 		return button;
 	}
 
-	public static JTextField getUsernamefield() {
-		return usernamefield;
+	public static String getUsernamefield() {
+		return usernamefield.getText();
 	}
 
 	public static void setUsernamefield(JTextField usernamefield) {
 		LoginAccountGUI.usernamefield = usernamefield;
 	}
 
-	public static JPasswordField getPassfield() {
-		return passfield;
+	public static String getPassfield() {
+		return passfield.getText();
 	}
 
 	public static void setPassfield(JPasswordField passfield) {

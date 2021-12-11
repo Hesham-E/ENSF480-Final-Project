@@ -112,8 +112,12 @@ public class SearchGUI {
 				String area = areabox.getSelectedItem().toString();
 				String furn = furnbox.getSelectedItem().toString();
 
-				System.out.println(htype + " " + bed + " " + bath + " " + area + " " + furn);
+				System.out.println("from Search GUI: " + htype + " " + bed + " " + bath + " " + area + " " + furn);
 				searchFind = controller.filterInputs(htype, bed, bath, area, furn);
+
+				for(int i = 0; i < searchFind.size(); i++){
+					System.out.println("from Search GUI searchfind: " + searchFind.get(i).getHouseid());
+				}
 			}
 		});
 		panel.add(searchbutton);
