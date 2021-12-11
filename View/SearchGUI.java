@@ -2,10 +2,12 @@ package View;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 
 import Model.Property;
+import Controller.Database;
 import Controller.SearchController;
 
 public class SearchGUI {
