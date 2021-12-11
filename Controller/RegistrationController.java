@@ -24,7 +24,7 @@ public class RegistrationController extends DBInterfaceController{
             validateUsername(theView.getUsernamefield());
             
             if (theView.getUniqueUsername() && theView.getUniqueemail()) {
-                createAccount(theView.getUsernamefield(), theView.getPassfield(), theView.getEmailfield(), theView.getEmailfield(), theView.getUserType());
+                createAccount(theView.getUsernamefield(), theView.getPassfield(), theView.getEmailfield(), theView.getNamefield(), theView.getUserType());
             }
         });
     }
@@ -69,6 +69,8 @@ public class RegistrationController extends DBInterfaceController{
     public void validateUsername (String username) {
         theView.setUniqueUsername(instance.registrationUsernameUnique(username));
     }
+
+
 }
 
 

@@ -63,7 +63,7 @@ public class SearchController extends DBInterfaceController{
         	furnished = false;
         }
 
-        return filterCatalog(TypeOption, bedroomNo, bathroomNo, AreaOption, furnished);
+        return filterCatalog(TypeOption, bedRoomNo, bathroomNo, AreaOption, furnished);
     }
 
     public PropertyCatalog fetchPropertyCatalog () {

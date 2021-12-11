@@ -152,32 +152,32 @@ public class RegGUI{
 		regframe.setVisible(true);
 	}
 
-	public static JTextField getNamefield() {
-		return namefield;
+	public static String getNamefield() {
+		return namefield.toString();
 	}
 
 	public static void setNamefield(JTextField namefield) {
 		RegGUI.namefield = namefield;
 	}
 
-	public static JTextField getEmailfield() {
-		return emailfield;
+	public static String getEmailfield() {
+		return emailfield.toString();
 	}
 
 	public static void setEmailfield(JTextField emailfield) {
 		RegGUI.emailfield = emailfield;
 	}
 
-	public static JTextField getUsernamefield() {
-		return usernamefield;
+	public static String getUsernamefield() {
+		return usernamefield.toString();
 	}
 
 	public static void setUsernamefield(JTextField usernamefield) {
 		RegGUI.usernamefield = usernamefield;
 	}
 
-	public static JPasswordField getPassfield() {
-		return passfield;
+	public static String getPassfield() {
+		return passfield.toString();
 	}
 
 	public static void setPassfield(JPasswordField passfield) {
@@ -191,5 +191,28 @@ public class RegGUI{
 	public static void setUserTypes(String[] userTypes) {
 		RegGUI.userTypes = userTypes;
 	}
+
+	public String getUserType () {
+		return usertypebox.getSelectedItem().toString();
+	}
 	
+	public boolean getUniqueemail() {
+		return this.uniqueemail;
+	}
+
+	public void setUniqueemail(boolean uniqueemail) {
+		this.uniqueemail = uniqueemail;
+	}
+
+	public boolean getUniqueUsername() {
+		return this.uniqueusername;
+	}
+
+	public void setUniqueUsername(boolean uniqueusername) {
+		this.uniqueusername = uniqueusername;
+	}
+
+	public JButton getRegButton() {
+		return regbutton;
+	}
 }
