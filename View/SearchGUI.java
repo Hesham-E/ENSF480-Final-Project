@@ -46,7 +46,7 @@ public class SearchGUI {
 		db.initializeConnection();
 		controller = new SearchController(db);
 //created a search frame 
-		this.subscriber  = emailAddress;
+		//this.subscriber  = emailAddress;
 
 		JFrame frame = new JFrame("Search");
 		panel = new JPanel();
@@ -140,14 +140,14 @@ public class SearchGUI {
 		bookmarkbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-          	if(!subscriber.equals(null)){
+          	if(!emailAddress.equals(null)){
 
 				String htype = typebox.getSelectedItem().toString();
 				String bed = bedbox.getSelectedItem().toString();
 				String bath = bathbox.getSelectedItem().toString();
 				String area = areabox.getSelectedItem().toString();
 				String furn = furnbox.getSelectedItem().toString();
-				controller.SubscribeFilter(subscriber, htype, bed, bath, area, furn);
+				controller.SubscribeFilter(emailAddress, htype, bed, bath, area, furn);
 
 				frame.setVisible(false);
 				JOptionPane.showMessageDialog(frame, "Subscription Saved!");

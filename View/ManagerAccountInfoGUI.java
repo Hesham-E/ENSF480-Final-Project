@@ -104,7 +104,7 @@ public class ManagerAccountInfoGUI{
     public ManagerAccountInfoGUI() {
     
     JFrame frame = new JFrame();
-	frame.setSize(800, 00);
+	frame.setSize(800, 800);
 	frame.setTitle("Manager's Page!");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -168,6 +168,7 @@ public class ManagerAccountInfoGUI{
 	frame.setVisible(true);
 
 	//Convert 
+	/*
 	Object[][] landlordInfo = new Object[1][10];
 	String[] oneLandlordinfo = new String[10];
 
@@ -179,6 +180,7 @@ public class ManagerAccountInfoGUI{
 	//JScrollPane lScrollPane = new JScrollPane(landlordTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	landlordTable.setFillsViewportHeight(true);
 	lpanel.add(landlordTable);
+	*/
 }
 
 

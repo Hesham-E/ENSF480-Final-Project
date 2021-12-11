@@ -11,6 +11,7 @@ public class Landlord extends Account{
     private double amount = 50; // assuming that they have to pay 50 dollars every 60 days
 
     public Landlord() {
+        userInfo = new User();
         userInfo.setAccountType(AccountType.LANDLORD);
     }
     

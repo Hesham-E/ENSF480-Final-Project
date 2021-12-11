@@ -235,10 +235,15 @@ public class Database {
                 p.setHouseid(results.getInt("HouseID"));
 
                 //Getting landlord information
+                System.out.println("l username " + results.getString("LandlordUsername"));
                 User landlordUserInfo = getAccountInfo(results.getString("LandlordUsername"));
+                System.out.println(landlordUserInfo.getAccountType());
                 Landlord l = new Landlord();
                 l.setUserInfo(landlordUserInfo);
+                l.getUserInfo().setAccountType(AccountType.LANDLORD);
+                System.out.println(l.getUserInfo().getAccountType());
                 p.setLandlord(l);
+                System.out.println(p.getLandlord().getUserInfo().getUsername());
 
                 //Getting the rest of property information
                 p.setStatus(PropertyState.valueOf(results.getString("State")));
