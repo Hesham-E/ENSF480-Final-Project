@@ -2,10 +2,12 @@ package View;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 
 import Model.Property;
+import Controller.Database;
 import Controller.SearchController;
 
 public class SearchGUI {
@@ -34,10 +36,11 @@ public class SearchGUI {
 	static String[] options = {"Yes", "No"};
 	
 	private ArrayList<Property> searchFind;
-
+	private SearchController controller;
 	private String subscriber;
 
 	public SearchGUI(String emailAddress) {
+		controller = new SearchController(new Database());
 //created a search frame 
 		this.subscriber  = emailAddress;
 
@@ -106,7 +109,7 @@ public class SearchGUI {
 				String furn = furnbox.getSelectedItem().toString();
 
 				System.out.println(htype + " " + bed + " " + bath + " " + area + " " + furn);
-				searchFind = SearchController.filterInputs(htype, bed, bath, area, furn);
+				searchFind = controller.filterInputs(htype, bed, bath, area, furn);
 			}
 		});
 		panel.add(searchbutton);

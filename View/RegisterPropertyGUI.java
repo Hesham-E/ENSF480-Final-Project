@@ -32,8 +32,8 @@ public class RegisterPropertyGUI {
 	private static JButton cancelbutton;
 	static String[] htypes = { "Apartment", "Duplex", "Condo", "Basement", "Loft", "House", "Townhouse", "Shared" };
 	static String[] area = { "NW", "SW", "NE", "SE" };
-	static int[] bed = { 1, 2,3,4,5 };
-	static int[] bath = { 1, 2,3 };
+	static String[] bed = {"1", "2", "3", "4", "5"}; //{ 1, 2,3,4,5 };
+	static String[] bath = {"1", "2", "3"};
 	static String[] options = { "Yes", "No" };
 	boolean flag = true;
 

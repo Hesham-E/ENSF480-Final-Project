@@ -39,18 +39,17 @@ public class ManagerAccountController extends AccountController {
         theView.setGUIUsername(theModel.getUserInfo().getUsername());
         theView.setGUIName(theModel.getUserInfo().getName());
         theView.setGUIEmail(theModel.getUserInfo().getEmail());
-        theView.setGUIAccountType(theModel.getUserInfo().getAccountType().toString());
 
         //Set fees that will be displayed
         theView.setGUIAmount(feePayment.getAmount());
-        theView.setGUIAmount(feePayment.getPeriod());
+        theView.setGUIPeriod(feePayment.getPeriod());
 
         //Get all account info
         AccountServer instance = AccountServer.getInstance();
         ArrayList<User> userList = instance.getUsers();
 
         //Set landlord info for the view
-        ArrayList<User> landlordInfoList;
+        ArrayList<User> landlordInfoList = new ArrayList<User>();
         for(int i = 0; i < userList.size(); i++){
             if(userList.get(i).getAccountType() == AccountType.LANDLORD){
                 landlordInfoList.add(userList.get(i));
@@ -59,7 +58,7 @@ public class ManagerAccountController extends AccountController {
         theView.setGUILandlordInfo(landlordInfoList);
         
         //Set registered renter info for the view
-        ArrayList<User> regRenterInfoList;
+        ArrayList<User> regRenterInfoList = new ArrayList<User>();
         for(int i = 0; i < userList.size(); i++){
             if(userList.get(i).getAccountType() == AccountType.REGISTEREDRENTER){
                 regRenterInfoList.add(userList.get(i));
