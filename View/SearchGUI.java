@@ -3,6 +3,8 @@ package View;
 import javax.swing.*;
 import java.awt.event.*;
 
+import java.util.ArrayList;
+
 import Model.Property;
 import Controller.SearchController;
 
@@ -31,11 +33,14 @@ public class SearchGUI {
 	static String[] bath = { "No preference", "1", "2","3" };
 	static String[] options = {"Yes", "No"};
 	
-	private SearchController searcher = new SearchController();
 	private ArrayList<Property> searchFind;
 
-	public SearchGUI() {
+	private String subscriber;
+
+	public SearchGUI(String emailAddress) {
 //created a search frame 
+		this.subscriber  = emailAddress;
+
 		JFrame frame = new JFrame("Search");
 		panel = new JPanel();
 		frame.setSize(500, 400);
@@ -101,7 +106,7 @@ public class SearchGUI {
 				String furn = furnbox.getSelectedItem().toString();
 
 				System.out.println(htype + " " + bed + " " + bath + " " + area + " " + furn);
-				searchFind = searcher.filterInputs(htype, bed, bath, area, furn);
+				searchFind = SearchController.filterInputs(htype, bed, bath, area, furn);
 			}
 		});
 		panel.add(searchbutton);

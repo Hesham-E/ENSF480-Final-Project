@@ -117,7 +117,7 @@ public class LoginAccountGUI {
 		guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent c) {
 				frame.setVisible(false);
-				redirect.gotosearchbutton();
+				redirect.gotosearchbutton(null);
 			}
 		});
 		loginpanel.add(guest);
