@@ -3,6 +3,11 @@ package View;
 import javax.swing.*;
 import java.awt.event.*;
 
+import java.util.ArrayList;
+
+import Model.Property;
+import Controller.SearchController;
+
 public class SearchGUI {
 
 	private static JPanel panel;
@@ -24,12 +29,18 @@ public class SearchGUI {
 	static String[] htypes = { "No preference", "Apartment", "Duplex", "Condo", "Basement", "Loft", "House",
 			"Townhouse", "Shared" };
 	static String[] area = { "No preference","NW", "SW", "NE", "SE" };
-	static String[] bed = { "No preference", "1","2","3","4","5" };
-	static String[] bath = { "No preference","1", "2","3" };
-	static String[] options = { "No preference", "Yes", "No" };
+	static String[] bed = { "No preference", "1", "2","3", "4", "5" };
+	static String[] bath = { "No preference", "1", "2","3" };
+	static String[] options = {"Yes", "No"};
+	
+	private ArrayList<Property> searchFind;
 
-	public SearchGUI() {
+	private String subscriber;
+
+	public SearchGUI(String emailAddress) {
 //created a search frame 
+		this.subscriber  = emailAddress;
+
 		JFrame frame = new JFrame("Search");
 		panel = new JPanel();
 		frame.setSize(500, 400);
@@ -92,8 +103,10 @@ public class SearchGUI {
 				String bed = bedbox.getSelectedItem().toString();
 				String bath = bathbox.getSelectedItem().toString();
 				String area = areabox.getSelectedItem().toString();
+				String furn = furnbox.getSelectedItem().toString();
 
-				System.out.println(htype + " " + bed + " " + bath + " " + area);
+				System.out.println(htype + " " + bed + " " + bath + " " + area + " " + furn);
+				searchFind = SearchController.filterInputs(htype, bed, bath, area, furn);
 			}
 		});
 		panel.add(searchbutton);
@@ -115,16 +128,17 @@ public class SearchGUI {
 		bookmarkbutton.setBounds(10, 200, 150, 110);
 		bookmarkbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//            	if(user is Registered renter) {
+          	if(LoginAccountGUI.accountType.equals("REGISTEREDRENTER")){
 				frame.setVisible(false);
 				JOptionPane.showMessageDialog(frame, "Subscription Saved!");
 			}
-//          }
-//            else {
-//            	frame.setVisible(false);
-//            	JOptionPane.showMessageDialog(null, "You must Login as Registered Renter to use this feature. Kindly Login and retry.", "Whoops", JOptionPane.ERROR_MESSAGE);
-//            	redirect.backtologin();
-//            }
+          
+            else {
+            	frame.setVisible(false);
+            	JOptionPane.showMessageDialog(null, "You must Login as Registered Renter to use this feature. Kindly Login and retry.", "Whoops", JOptionPane.ERROR_MESSAGE);
+            	redirect.backtologin();
+            }
+		}
 		});
 		panel.add(bookmarkbutton);
 

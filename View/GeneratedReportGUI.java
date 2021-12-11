@@ -63,7 +63,7 @@ public class GeneratedReportGUI {
 
         String list = "";
         for (int i = 0; i < rented.size(); i++ ){
-            list.append("Landlord: " + rented.get(i).getLandlord().getUserInfo().getName() + 
+            list += ("Landlord: " + rented.get(i).getLandlord().getUserInfo().getName() + 
                                 " House ID: " + rented.get(i).getHouseid() + " Address: " + rented.get(i).getAddress() + "\n");
         }
         count = new JLabel(list);
@@ -71,8 +71,4 @@ public class GeneratedReportGUI {
 		reportPanel.add(count);
         frame.setVisible(true);
     }
-    public static void main(String[] args) {
-		
-		new GeneratedReportGUI();
-	}
 } //unsure

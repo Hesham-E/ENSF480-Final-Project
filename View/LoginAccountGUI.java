@@ -26,7 +26,7 @@ public class LoginAccountGUI {
 	private static JButton extrab2;
 	private static JButton extrab3;
 	private static boolean loginValid;
-	private String accountType;
+	static String accountType;
 
 
 
@@ -117,7 +117,7 @@ public class LoginAccountGUI {
 		guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent c) {
 				frame.setVisible(false);
-				redirect.gotosearchbutton();
+				redirect.gotosearchbutton(null);
 			}
 		});
 		loginpanel.add(guest);

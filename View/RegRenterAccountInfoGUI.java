@@ -21,6 +21,8 @@ public class RegRenterAccountInfoGUI{
     private JButton RemovePropertyButton;
     private static JButton logoutbutton;
 
+	private String email;
+
     
     public void setGUIUsername(String username){
         RenterNameLabel.setText("Username: " + username);
@@ -32,6 +34,7 @@ public class RegRenterAccountInfoGUI{
 
     public void setGUIEmail(String email){
         RenterEmailLabel.setText("Email: " + email);
+		this.email = email;
     }
 
 
@@ -52,7 +55,7 @@ public class RegRenterAccountInfoGUI{
 	SearchPropertyButton.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent a){
 			frame.setVisible(false);
-			redirect.gotosearchbutton();
+			redirect.gotosearchbutton(this.email);
 	}
 	});
 	lpanel.add(SearchPropertyButton);
