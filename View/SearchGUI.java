@@ -131,7 +131,7 @@ public class SearchGUI {
 		bookmarkbutton.setBounds(10, 200, 150, 110);
 		bookmarkbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-          	if(LoginAccountGUI.accountType.equals("REGISTEREDRENTER")){
+          	if(!subscriber.equals(null)){
 				frame.setVisible(false);
 				JOptionPane.showMessageDialog(frame, "Subscription Saved!");
 			}

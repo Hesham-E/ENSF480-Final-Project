@@ -11,10 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Controller.LoginController;
+import Controller.Database;
+
 public class LoginAccountGUI {
 
 	private static JPanel loginpanel;
-	private static JLabel usernamelabel;
+	private  JLabel usernamelabel;
 	private static JTextField usernamefield;
 	private static JLabel passlabel;
 	private static JPasswordField passfield;
@@ -28,9 +31,13 @@ public class LoginAccountGUI {
 	private static boolean loginValid;
 	static String accountType;
 
+	private LoginController loginController;
+
 
 
 	public LoginAccountGUI() {
+		
+		//loginController = new LoginController(new Database(), this);
 
 		JFrame frame = new JFrame();
 		frame.setSize(400, 350);

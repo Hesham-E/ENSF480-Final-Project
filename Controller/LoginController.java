@@ -8,15 +8,15 @@ public class LoginController extends DBInterfaceController{
     private AccountServer instance;
     private LoginAccountGUI theView;
 
-    LoginController(Database db, LoginAccountGUI view){
+    public LoginController(Database db, LoginAccountGUI view){
         super(db);
         this.instance = AccountServer.getInstance();
         this.theView = view;
 
         //When "Login" button is pressed, validate username and password
-        theView.getLoginButton().addActionListener (e -> {
-            String username = theView.getUsernamefield().toString();
-            String password = theView.getPassfield().toString();
+        LoginAccountGUI.getLoginButton().addActionListener (e -> {
+            String username = LoginAccountGUI.getUsernamefield().toString();
+            String password = LoginAccountGUI.getPassfield().toString();
             validate(username, password);
         });      
     }
