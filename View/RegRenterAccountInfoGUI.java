@@ -85,7 +85,7 @@ public class RegRenterAccountInfoGUI{
 	SearchPropertyButton.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent a){
 			frame.setVisible(false);
-			redirect.gotosearchbutton(this.email);
+			redirect.gotosearchbutton(email);
 	}
 	});
 	lpanel.add(SearchPropertyButton);
