@@ -43,6 +43,29 @@ public class Database {
             ex.printStackTrace();
         }  
     }
+
+    public void addSubscribe(String email, String type, int bedroom, int bath, String area, boolean furn){
+        try {                    
+
+            String query = "INSERT INTO subscribe (RenterEmail, Type, BedroomNo, BathroomNo, Furnished, CityQuad)"
+            + " VALUES(?, ?, ?, ?, ?, ?)";
+            PreparedStatement myStmt = this.connect.prepareStatement(query);
+
+            myStmt.setString(1, email);
+            myStmt.setString(2, type);
+            myStmt.setString(3, bedroom);
+            myStmt.setString(4, bath);
+            myStmt.setString(5, furn);
+            myStmt.setString(6, area);
+
+            myStmt.execute();
+            myStmt.close();
+        } 
+
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }  
+    }
     
     //Retrieves account info from database based on username
     public User getAccountInfo (String username) {//Changed return type to User from Account
