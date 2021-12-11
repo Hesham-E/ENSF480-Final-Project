@@ -17,9 +17,7 @@ public class RegRenterAccountController extends AccountController {
         this.searchController = new SearchController(db);
 
         //When "Save Changes" button gets pressed, update subscribed properties for model and view
-        theView.getSaveChangesButton().addActionListener (e -> {
-            updateGUISubscribedProperties();
-        });
+        performGUIStrategy();
     }
 
     //Sets the values to be shown for RegRenter account info
@@ -27,29 +25,30 @@ public class RegRenterAccountController extends AccountController {
         theView.setGUIUsername(theModel.getUserInfo().getUsername());
         theView.setGUIName(theModel.getUserInfo().getName());
         theView.setGUIEmail(theModel.getUserInfo().getEmail());
-        theView.setGUIAccountType(theModel.getUserInfo().getAccountType().toString());
-        theView.setGUISubscription(theModel.getProperties());
+        // theView.setGUIAccountType(theModel.getUserInfo().getAccountType().toString()); Took these out because they seem redundant
+        // theView.setGUISubscription(theModel.getRentalProperty());
     }
 
 
     //Updates subscription then shows new subscription to reg renter account page
-    public void updateSubscribedProperties() {
+    //Made redudant by search controller
+    // public void updateSubscribedProperties() {
 
-        //Getting new filter options for subscription
-        String type = theView.getGUIType();
-        int bedroomNo = theView.getGUIBedroomNo();
-        int bathroomNo = theView.getGUIBathroomNo();
-        boolean furnished = theView.getGUIFurnished();
-        String cityQuad = theView.getGUICityQuad();
+    //     //Getting new filter options for subscription
+    //     String type = theView.getGUIType();
+    //     int bedroomNo = theView.getGUIBedroomNo();
+    //     int bathroomNo = theView.getGUIBathroomNo();
+    //     boolean furnished = theView.getGUIFurnished();
+    //     String cityQuad = theView.getGUICityQuad();
 
-        ArrayList<Property> newSubscribedList = searchController.filterCatalog(type, bedroomNo, bathroomNo, furnished, cityQuad);
+    //     ArrayList<Property> newSubscribedList = searchController.filterCatalog(type, bedroomNo, bathroomNo, cityQuad, furnished);
 
-        //Update renter model subscribed list
-        theModel.subscribeToSearch(type, bedroomNo, bathroomNo, furnished, cityQuad);
+    //     //Update renter model subscribed list
+    //     theModel.subscribeToSearch(type, bedroomNo, bathroomNo, furnished, cityQuad);
 
-        //Set new subscribed property list
-        theView.setGUISubscribedProperties(newSubscribedList);
+    //     //Set new subscribed property list
+    //     theView.setGUISubscribedProperties(newSubscribedList);
          
-    }
+    // }
     
 }
