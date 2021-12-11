@@ -13,13 +13,16 @@ public class LandlordAccountController extends AccountController {
 
     LandlordAccountController(Landlord model, LandlordAccountInfoGUI view, Database db){
         super(db);
+        database.initializeConnection();
         this.theModel = model;
         this.theView = view;
 
         //When "Save Changes" button gets pressed, save new property info into database
-        theView.getSaveChangesButton().addActionListener (e -> {
-            updateDatabase();
-        });
+        // theView.getSaveChangesButton().addActionListener (e -> {
+        //     updateDatabase();
+        // }); No changes to be saved on LandlordAccountInfoGUI yet
+
+        performGUIStrategy();
     }
 
     //Sets the values to be shown for Landlord account info

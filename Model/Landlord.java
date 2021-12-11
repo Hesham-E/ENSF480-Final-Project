@@ -11,19 +11,23 @@ public class Landlord extends Account{
     private double amount = 50; // assuming that they have to pay 50 dollars every 60 days
 
     public Landlord() {
+        userInfo = new User();
         userInfo.setAccountType(AccountType.LANDLORD);
     }
     
+    //Adds property to properties array
     public void registerProperty (Property p) {
     	properties.add(p);
     	payFee();
     }
 
+    //Updates fee status of the landlord
     public void payFee () {
     	feePayment fee = new feePayment();
     	fee.pay(this.period, this.amount);
     }
     
+    //Returns feePayment object that belongs to the landlord
     public feePayment getFee() {
         return this.fee;
     }
@@ -48,8 +52,3 @@ public class Landlord extends Account{
         this.registrationController = registrationController;
     }
 }
-
-/* Few Notes:
-- Not sure about payFee
-- Not sure of Properties setter and getter
-*/

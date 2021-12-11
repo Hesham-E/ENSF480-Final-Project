@@ -10,24 +10,27 @@ public class SearchController extends DBInterfaceController{
         super(db);
         database.initializeConnection();
     }
-
     //Filters the property catalog based on attributes
     //returns an array list of similar properties
-    public ArrayList<Property> filterCatalog (String type, int bedroomNo, int bathroomNo, boolean furnished, String cityQuad) {
+    public ArrayList<Property> filterCatalog (String type, int bedroomNo, int bathroomNo, String cityQuad, boolean furnished) {
         ArrayList<Property> catalog = database.getPropertyList();
         ArrayList<Property> similarProperties = new ArrayList<Property>();
         boolean isSimilar = true;
+        
+        for(int i = 0; i < catalog.size(); i++){
+            System.out.println("SearchController filter Catalog: " + catalog.get(i).getHouseid());
+        }
 
         for (Property p : catalog) {
             if (p.getFurnished() != furnished)
                 isSimilar = false;
-            else if (!p.getType().equals(type) && type != null)
+            else if (!p.getType().equals(type) && (!type.equals("No preference")))
                 isSimilar = false;
             else if (p.getBedroomNo() != bedroomNo && bedroomNo != 0)
                 isSimilar = false;
             else if (p.getBathroomNo() != bathroomNo && bathroomNo != 0)
                 isSimilar = false;
-            else if (!p.getCityQuad().equals(cityQuad) && cityQuad != null)
+            else if (!p.getCityQuad().equals(cityQuad) && (!cityQuad.equals("No preference")))
                 isSimilar = false;
 
             if (isSimilar)
@@ -37,6 +40,35 @@ public class SearchController extends DBInterfaceController{
         }
 
         return similarProperties;
+    }
+    
+    public ArrayList<Property> filterInputs (String TypeOption, String bedRoomOption, String bathOption, String AreaOption, String FurnOption)
+    {
+        int bedRoomNo = 0;
+        if (bedRoomOption.equals("No preference")) {
+            bedRoomNo = 0;
+        }
+        else {
+            bedRoomNo = Integer.parseInt(bedRoomOption);
+        }
+        
+        int bathroomNo = 0;
+        if (bathOption.equals("No preference")) {
+        	bathroomNo = 0;
+        }
+        else {
+        	bathroomNo = Integer.parseInt(bathOption);
+        }
+        
+        boolean furnished;
+        if (FurnOption.equals("Yes")) {
+        	furnished = true;
+        }
+        else {
+        	furnished = false;
+        }
+
+        return filterCatalog(TypeOption, bedRoomNo, bathroomNo, AreaOption, furnished);
     }
 
     //Updates catalog member from database
@@ -52,5 +84,35 @@ public class SearchController extends DBInterfaceController{
         System.out.println("Email sent successfully");
         return ("Emailed sent successfully");
     }
+    
+    public void SubscribeFilter(String email, String TypeOption, String bedRoomOption, String bathOption, String AreaOption, String FurnOption)
+    {
+        int bedRoomNo = 0;
+        if (bedRoomOption.equals("No preference")) {
+            bedRoomNo = 0;
+        }
+        else {
+            bedRoomNo = Integer.parseInt(bedRoomOption);
+        }
+        
+        int bathroomNo = 0;
+        if (bathOption.equals("No preference")) {
+        	bathroomNo = 0;
+        }
+        else {
+        	bathroomNo = Integer.parseInt(bathOption);
+        }
+        
+        boolean furnished;
+        if (FurnOption.equals("Yes")) {
+        	furnished = true;
+        }
+        else {
+        	furnished = false;
+        }
+
+        database.addSubscribe(email, TypeOption, bedRoomNo, bathroomNo, AreaOption, furnished);
+    }
+    
     
 }

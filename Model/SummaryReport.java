@@ -14,43 +14,7 @@ public class SummaryReport {
     private int noOfRentedProperties;
      // private DBInterfaceController summaryController; removed this since it violates the package diagram
 
-    public ArrayList<Property> getPropertiesRentedInPeriod() {
-        return this.propertiesRentedInPeriod;
-    }
-
-    public void setPropertiesRentedInPeriod(ArrayList<Property> propertiesRentedInPeriod) {
-        this.propertiesRentedInPeriod = propertiesRentedInPeriod;
-    }
-    
-    public ArrayList<Property> getCatalog() {
-        return this.catalog;
-    }
-
-    public void setCatalog(ArrayList<Property> catalog) {
-        this.catalog = catalog;
-    }
-
-    public int getTimePeriod() {
-        return this.timePeriod;
-    }
-
-    public void setTimePeriod(int timePeriod) {
-        this.timePeriod = timePeriod;
-    };
-
-    public Date getToday() {
-        return this.today;
-    }
-
-    public void setToday(Date today) {
-        this.today = today;
-    }
-
-   
-
-    //Removed update() function which is present in UML
-
-    //Catch all function that updates all members of the SummaryReport
+     //Catch all function that updates all members of the SummaryReport
     public void generateReport() { //changed name from displayReport() since we have a GUI
         countActiveProperties();
         countProperties();
@@ -105,6 +69,44 @@ public class SummaryReport {
         }
         return noOfRentedProperties;
     }
+
+    public ArrayList<Property> getPropertiesRentedInPeriod() {
+        return this.propertiesRentedInPeriod;
+    }
+
+    public void setPropertiesRentedInPeriod(ArrayList<Property> propertiesRentedInPeriod) {
+        this.propertiesRentedInPeriod = propertiesRentedInPeriod;
+    }
+    
+    public ArrayList<Property> getCatalog() {
+        return this.catalog;
+    }
+
+    public void setCatalog(ArrayList<Property> catalog) {
+        this.catalog = catalog;
+    }
+
+    public int getTimePeriod() {
+        return this.timePeriod;
+    }
+
+    public void setTimePeriod(int timePeriod) {
+        this.timePeriod = timePeriod;
+    };
+
+    public Date getToday() {
+        return this.today;
+    }
+
+    public void setToday(Date today) {
+        this.today = today;
+    }
+
+   
+
+    //Removed update() function which is present in UML
+
+    
 
     public int getTotalNo_of_Properties() {
         return this.totalNo_of_Properties;

@@ -8,6 +8,18 @@ public class User {
     private String email;
     private AccountType accountType;
 
+    public User(){
+
+    }
+    
+    public User(String username, String password, String name, String email, String accountType){
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.accountType = AccountType.valueOf(accountType);
+    }
+
     public String getUsername() {
         return this.username;
     }
@@ -46,6 +58,16 @@ public class User {
 
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
+    }
+
+    public void setAccountType (String accountType) {
+        if (accountType.equals("RegRenter"))
+            this.accountType = AccountType.REGISTEREDRENTER;
+        else if (accountType.equals("Landlord"))
+            this.accountType = AccountType.LANDLORD;
+        else if (accountType.equals("Manager"))
+            this.accountType = AccountType.MANAGER;
+
     }
 
 }

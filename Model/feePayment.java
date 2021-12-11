@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
 
@@ -19,21 +20,34 @@ public class feePayment {
     	this.feePeriod = c.getTime();
     }
     
-    public void periodEnded() { // I think this should be implemented somewhere else but let's leave it here for now
+    //Updates pay status
+    public void periodEnded() {
     	Date currDate = new Date();
         
-        if(currDate.getTime() = feePeriod.getTime()) {
+        if(currDate.getTime() == feePeriod.getTime()) {
         	getNotified();
         	this.paid = false;
         }
     }
 
-    public Notifications getNotified() { // Notifications does not exist on diagram
+    //Notifies landlord their fee payment ended if there was an email system implemented
+    public void getNotified() { // Notifications does not exist on diagram
     	System.out.println("Payment Period Ended!");
-    	// Print that they have to renew it?? nothing else?
     }
 
-    public void modifyAmount(double newAmount) {
-    	this.feeAmount = newAmount;
+    public static void setAmount(double newAmount) {
+    	feeAmount = newAmount;
+    }
+
+    public static void setPeriod(Date newPeriod){
+        feePeriod = newPeriod;
+    }
+
+    public static double getAmount() {
+    	return feeAmount;
+    }
+
+    public static Date getPeriod(){
+        return feePeriod;
     }
 }

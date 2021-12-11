@@ -1,35 +1,49 @@
 package Controller;
 
 import Model.Account;
+import Model.AccountServer;
 import Model.AccountType;
 import Model.Landlord;
 import Model.Manager;
 import Model.RegRenter;
 import Model.User;
-import View.RegisterAccountGUI;
+import View.RegGUI;
 
 public class RegistrationController extends DBInterfaceController{
-    private RegisterAccountGUI theView;
+    private RegGUI theView;
+    private AccountServer instance;
 
-    public RegistrationController (Database db, RegisterAccountGUI view) {
+    public RegistrationController (Database db, RegGUI view) {
         super(db);
-        db.initializeConnection();
+        database.initializeConnection();
         
         theView = view;
 
-        theView.addActionListener (e -> {
-            createAccount(theView.getGUIUsername(), theView.getGUIPassword(), theView.getGUIName(), theView.getGUIEmail(), theView.getGUIAccountType());
+        //Validates account information to make sure its unique and adds account into database
+        theView.getRegButton().addActionListener (e -> {
+            validateEmail(theView.getEmailfield());
+            validateUsername(theView.getUsernamefield());
+            
+            if (theView.getUniqueUsername() && theView.getUniqueemail()) {
+                createAccount(theView.getUsernamefield(), theView.getPassfield(), theView.getEmailfield(), theView.getNamefield(), theView.getUserType());
+            }
         });
     }
 
-    //added accountType
-    //Creates an account in the database based on what is inputted in the GUI
-    public void createAccount (String username, String password, String name, String email, AccountType accountType) {
+    //Adds account parameters into the database
+    public void createAccount (String username, String password, String name, String email, String accountTypeString) {
         User userInfo = new User();
+        AccountType accountType = AccountType.REGISTEREDRENTER;
         userInfo.setUsername(username);
         userInfo.setPassword(password);
         userInfo.setName(name);
         userInfo.setEmail(email);
+
+        if (accountTypeString.equals("Landlord"))
+            accountType = AccountType.LANDLORD;
+        else if (accountTypeString.equals("Renter"))
+            accountType = AccountType.REGISTEREDRENTER;
+            
         userInfo.setAccountType(accountType);
         Account account;
 
@@ -48,4 +62,16 @@ public class RegistrationController extends DBInterfaceController{
 
         super.addDatabaseAccount(account);
     }
+
+    public void validateEmail (String email) {
+        theView.setUniqueemail(instance.registrationEmailUnique(email));
+    }
+
+    public void validateUsername (String username) {
+        theView.setUniqueUsername(instance.registrationUsernameUnique(username));
+    }
+
+
 }
+
+

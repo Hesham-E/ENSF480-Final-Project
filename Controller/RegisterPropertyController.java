@@ -15,10 +15,11 @@ public class RegisterPropertyController extends DBInterfaceController{
         
         theView = view;
 
-        theView.addActionListener (e -> {
-            registerProperty(theView.getGUIAddress(), theView.getGUIType(), 
-                             theView.getGUIBedroomNo(), theView.getGUIBathroomNo(), theView.getGUIFurnished(), 
-                             theView.getGUICityQuad(), theView.getGUICost(), theView.getGUILandlord(), theView.getGUIState());
+        //Forwards text field items based on GUI to registerProperty() when "Registration" button is pressed
+        theView.getRegButton().addActionListener (e -> {
+            registerProperty(theView.getLocfield(), theView.getTypebox(), 
+                             theView.getBedbox(), theView.getBathbox(), theView.getFurnishbox(), 
+                             theView.getAreafield(), theView.getPricefield(), new Landlord() /*theView.getGUILandlord()*/, PropertyState.ACTIVE /*theView.getGUIState()*/);
         });
     }
 

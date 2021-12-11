@@ -1,15 +1,11 @@
 package Model;
 
-import Controller.AccountController;
-import Controller.ManagerAccountController;
-
 public class Manager extends Account{
     private SummaryReport report;
 
     //Initializes manager object with correct information
     //Methods and members from class Account can be used to modify manager later
     public Manager () {
-        accountController = new ManagerAccountController();
         userInfo.setAccountType(AccountType.MANAGER);
     }
 

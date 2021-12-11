@@ -43,6 +43,29 @@ public class Database {
             ex.printStackTrace();
         }  
     }
+
+    public void addSubscribe(String email, String type, int bedroom, int bath, String area, boolean furn){
+        try {                    
+
+            String query = "INSERT INTO subscribe (RenterEmail, Type, BedroomNo, BathroomNo, Furnished, CityQuad)"
+            + " VALUES(?, ?, ?, ?, ?, ?)";
+            PreparedStatement myStmt = this.connect.prepareStatement(query);
+
+            myStmt.setString(1, email);
+            myStmt.setString(2, type);
+            myStmt.setInt(3, bedroom);
+            myStmt.setInt(4, bath);
+            myStmt.setBoolean(5, furn);
+            myStmt.setString(6, area);
+
+            myStmt.execute();
+            myStmt.close();
+        } 
+
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }  
+    }
     
     //Retrieves account info from database based on username
     public User getAccountInfo (String username) {//Changed return type to User from Account
@@ -61,7 +84,7 @@ public class Database {
                 u.setPassword(results.getString("Password"));
                 u.setName(results.getString("Name"));
                 u.setEmail(results.getString("Email"));
-                u.setAccountType(AccountType.valueOf("accountType"));
+                u.setAccountType(AccountType.valueOf(results.getString("AccountType")));
             }
         }
         myStmt.close();
@@ -204,7 +227,7 @@ public class Database {
         try {                    
             Statement myStmt = this.connect.createStatement();
             ResultSet results;
-            results = myStmt.executeQuery("SELECT * FROM accounts");
+            results = myStmt.executeQuery("SELECT * FROM property");
 
             //Populate propertyList with all properties and their info stored in the database
             while (results.next()){
@@ -212,10 +235,15 @@ public class Database {
                 p.setHouseid(results.getInt("HouseID"));
 
                 //Getting landlord information
+                System.out.println("l username " + results.getString("LandlordUsername"));
                 User landlordUserInfo = getAccountInfo(results.getString("LandlordUsername"));
+                System.out.println(landlordUserInfo.getAccountType());
                 Landlord l = new Landlord();
                 l.setUserInfo(landlordUserInfo);
+                l.getUserInfo().setAccountType(AccountType.LANDLORD);
+                System.out.println(l.getUserInfo().getAccountType());
                 p.setLandlord(l);
+                System.out.println(p.getLandlord().getUserInfo().getUsername());
 
                 //Getting the rest of property information
                 p.setStatus(PropertyState.valueOf(results.getString("State")));
@@ -240,6 +268,36 @@ public class Database {
         }   
         return propertyList;
    }
+
+       //Retrieves list of properties and their info from the database
+       public  ArrayList<User> getUserList () {
+        ArrayList<User> userList = new ArrayList<User>();
+        try {                    
+            Statement myStmt = this.connect.createStatement();
+            ResultSet results;
+            results = myStmt.executeQuery("SELECT * FROM accounts");
+
+            //Populate userList with all properties and their info stored in the database
+            while (results.next()){
+                User u = new User();
+                u.setAccountType(results.getString("AccountType"));
+                u.setEmail(results.getString("Email"));
+                u.setName(results.getString("Name"));
+                u.setPassword(results.getString("Password"));
+                u.setUsername(results.getString("Username"));
+
+                userList.add(u);
+            }
+        myStmt.close();
+        } 
+        
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }   
+        return userList;
+   }
+
+   
     
     //Adds message from renter to landlord to the database 
     public void updateMessage (String message, Property property) { //Send message to property's landlord's email
