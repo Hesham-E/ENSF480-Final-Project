@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Controller.Database;
+import Controller.LoginController;
+
 public class LoginAccountGUI {
 
 	private static JPanel loginpanel;
@@ -31,7 +34,7 @@ public class LoginAccountGUI {
 
 
 	public LoginAccountGUI() {
-
+		// LoginController controller = new LoginController(new Database(), this);
 		JFrame frame = new JFrame();
 		frame.setSize(400, 350);
 		frame.setTitle("Welcome to RentSmarter Calgary!");

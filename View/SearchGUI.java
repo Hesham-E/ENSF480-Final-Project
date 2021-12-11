@@ -1,6 +1,8 @@
 package View;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
+
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -40,7 +42,9 @@ public class SearchGUI {
 	private String subscriber;
 
 	public SearchGUI(String emailAddress) {
-		controller = new SearchController(new Database());
+		Database db = new Database();
+		db.initializeConnection();
+		controller = new SearchController(db);
 //created a search frame 
 		this.subscriber  = emailAddress;
 

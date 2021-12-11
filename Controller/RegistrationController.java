@@ -15,7 +15,7 @@ public class RegistrationController extends DBInterfaceController{
 
     public RegistrationController (Database db, RegGUI view) {
         super(db);
-        db.initializeConnection();
+        database.initializeConnection();
         
         theView = view;
 
