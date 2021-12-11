@@ -12,10 +12,10 @@ public class RegRenterAccountInfoGUI{
     private JLabel RenterNameLabel;
     private JLabel RenterUsernameLabel;
     private JLabel RenterEmailLabel;
-    private JTextField UserNameField;
-    private JTextField PasswordField;
-    private JTextField NameField;
-    private JTextField EmailField;
+	private JTextField UserNameField;
+	private JTextField PasswordField;
+	private JTextField NameField;
+	private JTextField EmailField;
     private JButton SearchPropertyButton;
     private JButton ViewSubscriptionButton;
     private JButton RemovePropertyButton;
@@ -23,7 +23,7 @@ public class RegRenterAccountInfoGUI{
 
     
     public void setGUIUsername(String username){
-        RenterNameLabel.setText("Username: " + username);
+        RenterUsernameLabel.setText("Username: " + username);
     }
 
     public void setGUIName(String name){
@@ -34,7 +34,37 @@ public class RegRenterAccountInfoGUI{
         RenterEmailLabel.setText("Email: " + email);
     }
 
+	public String getUserNameField() {
+		return this.UserNameField.toString();
+	}
 
+	public void setUserNameField(JTextField UserNameField) {
+		this.UserNameField = UserNameField;
+	}
+
+	public String getPasswordField() {
+		return this.PasswordField.toString();
+	}
+
+	public void setPasswordField(JTextField PasswordField) {
+		this.PasswordField = PasswordField;
+	}
+
+	public String getNameField() {
+		return this.NameField.toString();
+	}
+
+	public void setNameField(JTextField NameField) {
+		this.NameField = NameField;
+	}
+
+	public String getEmailField() {
+		return this.EmailField.toString();
+	}
+
+	public void setEmailField(JTextField EmailField) {
+		this.EmailField = EmailField;
+	}
     
     public RegRenterAccountInfoGUI() {
     
